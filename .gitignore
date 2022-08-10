@@ -11,6 +11,9 @@
 # production
 /build
 
+# remove server node modules
+/server/node_modules
+
 # misc
 .DS_Store
 .env.local
