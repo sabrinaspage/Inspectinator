@@ -1,12 +1,25 @@
 import { createContext, PropsWithChildren, useState } from "react";
 
-const InspectorFormContext = createContext({});
+interface InspectorFormContextI {
+  hi: string;
+}
+
+export const InspectorFormContext = createContext(
+  {} as ReturnType<typeof useValue>
+);
+
+const useValue = () => {
+  const [initialForm, setForm] = useState<InspectorFormContextI>({ hi: "sup" });
+
+  return {
+    initialForm,
+    setForm,
+  };
+};
 
 export default function InspectorFormProvider({ children }: PropsWithChildren) {
-  const [initialForm, setForm] = useState({});
-
   return (
-    <InspectorFormContext.Provider value={initialForm}>
+    <InspectorFormContext.Provider value={useValue()}>
       {children}
     </InspectorFormContext.Provider>
   );
