@@ -4,16 +4,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import SectionSelectionPage from "./pages/InspectorFormFlow/SectionSelectionPage/SectionSelectionPage";
+import AnswerSelectionPage from "./pages/InspectorFormFlow/AnswerSelectionPage/AnswerSelectionPage";
+import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
+import InspectorFormProvider from "./contexts/InspectorFormContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/signIn" element={<SignInPage />} />
-        <Route path="/signUp" element={<SignUpPage />} />
-      </Routes>
-    </Router>
+    <InspectorFormProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/signIn" element={<SignInPage />} />
+          <Route path="/signUp" element={<SignUpPage />} />
+          <Route path="/sectionSelection" element={<SectionSelectionPage />} />
+          <Route path="/answerSelection" element={<AnswerSelectionPage />} />
+          <Route path="/eSign" element={<EsignaturePage />} />
+        </Routes>
+      </Router>
+    </InspectorFormProvider>
   );
 }
 
