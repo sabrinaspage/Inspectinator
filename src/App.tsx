@@ -7,12 +7,14 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import SectionSelectionPage from "./pages/InspectorFormFlow/SectionSelectionPage/SectionSelectionPage";
 import AnswerSelectionPage from "./pages/InspectorFormFlow/AnswerSelectionPage/AnswerSelectionPage";
 import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/mainDashboard/Dashboard";
 import InspectorFormProvider from "./contexts/InspectorFormContext";
+import Navbar from "./recycleComps/NavBarComp/NavBar";
 
 function App() {
   return (
     <InspectorFormProvider>
+      <Navbar />
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
