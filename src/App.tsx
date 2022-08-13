@@ -7,7 +7,11 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import SectionSelectionPage from "./pages/InspectorFormFlow/SectionSelectionPage/SectionSelectionPage";
 import AnswerSelectionPage from "./pages/InspectorFormFlow/AnswerSelectionPage/AnswerSelectionPage";
 import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
+import Dashboard from "./pages/Dashboard/Dashboard";
+
 import InspectorFormProvider from "./contexts/InspectorFormContext";
+
+
 
 function App() {
   return (
@@ -20,6 +24,7 @@ function App() {
           <Route path="/sectionSelection" element={<SectionSelectionPage />} />
           <Route path="/answerSelection" element={<AnswerSelectionPage />} />
           <Route path="/eSign" element={<EsignaturePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </InspectorFormProvider>
