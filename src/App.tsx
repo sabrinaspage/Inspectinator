@@ -8,10 +8,7 @@ import SectionSelectionPage from "./pages/InspectorFormFlow/SectionSelectionPage
 import AnswerSelectionPage from "./pages/InspectorFormFlow/AnswerSelectionPage/AnswerSelectionPage";
 import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
 import Dashboard from "./pages/Dashboard/Dashboard";
-
 import InspectorFormProvider from "./contexts/InspectorFormContext";
-
-
 
 function App() {
   return (
