@@ -32,7 +32,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       headingId: "flush-headingTwo",
       collapseId: "flush-collapseTwo",
       status: SectionStatus.NOT_STARTED,
-      title: "Red High Risk Factors",
+      title: "High Risk Factors",
       description:
         "High Risk Factors are improper practices or procedures identified as the most prevalent contributing factors of foodborne illness or injury.",
     },
@@ -41,7 +41,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       headingId: "flush-headingThree",
       collapseId: "flush-collapseThree",
       status: SectionStatus.NOT_STARTED,
-      title: "Blue Low Risk Factors",
+      title: "Low Risk Factors",
       description:
         "Low Risk Factors are preventive measures to control the addition of pathogens, chemicals, and physical objects into foods.",
     },
