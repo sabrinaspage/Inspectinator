@@ -17,9 +17,29 @@ const Section = ({
 }: InspectorFormSection) => {
   const sectionStatus =
     status === SectionStatus.NOT_STARTED ? (
-      <span className="text-danger ps-1">(not started)</span>
+      <div
+        style={{
+          borderRadius: "30px",
+          backgroundColor: "#FEF3F2",
+        }}
+        className="py-1 px-3 ms-2"
+      >
+        <p style={{ color: "#F04438", fontWeight: "500" }} className="m-0">
+          <small>Not Started</small>
+        </p>
+      </div>
     ) : (
-      <span className="text-success">(saved)</span>
+      <div
+        style={{
+          borderRadius: "30px",
+          backgroundColor: "#ECFDF3",
+        }}
+        className="py-1 px-3 ms-2"
+      >
+        <p style={{ color: "#12B76A", fontWeight: "500" }} className="m-0">
+          <small>Saved</small>
+        </p>
+      </div>
     );
 
   return (
@@ -77,29 +97,45 @@ export default function SectionSelectionPage() {
   }, [inspector]);
 
   return (
-    <div className="mt-5 container">
-      <div className="row px-2">
-        <div className="col-md-10">
-          <h1 className="fw-bold">Inspection Form</h1>
-          <p className="mt-3 fs-6 text-black-50">Fill in each section</p>
+    <div>
+      <div className="mt-5 container">
+        <div className="row px-2">
+          <div className="col-md-10">
+            <h1 className="fw-bold">Health Inspection Form</h1>
+            <p className="mt-3 fs-6 text-black-50">Fill in each section.</p>
+          </div>
         </div>
-        <div className="d-flex align-items-start col-md-2">
-          <h1 className="w-100">
-            <button
-              onClick={() => navigate("/dashboard")}
-              style={{ borderRadius: "8px" }}
-              className="btn p-2 w-100 btn-dark bg-dark"
-            >
-              Go back
-            </button>
-          </h1>
+        <div className="row px-2">
+          <div className="accordion accordion-flush" id="accordionFlushExample">
+            {inspectorFormSections.map((section, id) => (
+              <Section key={id} {...{ ...section }} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="row px-2">
-        <div className="accordion accordion-flush" id="accordionFlushExample">
-          {inspectorFormSections.map((section, id) => (
-            <Section key={id} {...{ ...section }} />
-          ))}
+        <div className="row px-2">
+          <div className="d-flex align-items-start col-md-2">
+            <h1 className="w-100">
+              <button
+                onClick={() => navigate("/dashboard")}
+                style={{ borderRadius: "8px" }}
+                className="btn p-2 w-100 btn-light bg-light border border-secondary"
+              >
+                Go Back
+              </button>
+            </h1>
+          </div>
+          <div className="col-md-8"></div>
+          <div className="d-flex align-items-start col-md-2">
+            <h1 className="w-100">
+              <button
+                onClick={() => navigate("#")}
+                style={{ borderRadius: "8px" }}
+                className="btn p-2 w-100 btn-dark bg-dark"
+              >
+                Review your Form
+              </button>
+            </h1>
+          </div>
         </div>
       </div>
     </div>
