@@ -9,24 +9,31 @@ import AnswerSelectionPage from "./pages/InspectorFormFlow/AnswerSelectionPage/A
 import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
 import Dashboard from "./pages/Dashboard/mainDashboard/Dashboard";
 import InspectorFormProvider from "./contexts/InspectorFormContext";
+
 import Navbar from "./recycleComps/NavBarComp/NavBar";
+import Footer from "./recycleComps/footerComps/Footer";
 
 function App() {
   return (
-    <InspectorFormProvider>
-      <Navbar />
-      <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/signIn" element={<SignInPage />} />
-          <Route path="/signUp" element={<SignUpPage />} />
-          <Route path="/sectionSelection" element={<SectionSelectionPage />} />
-          <Route path="/answerSelection" element={<AnswerSelectionPage />} />
-          <Route path="/eSign" element={<EsignaturePage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </Router>
-    </InspectorFormProvider>
+    <div style={{minHeight: "100vh", display: "flex", flexDirection: "column"}}>
+      <InspectorFormProvider>
+        <Navbar />
+        <div style={{flexGrow: '1'}}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/signIn" element={<SignInPage />} />
+              <Route path="/signUp" element={<SignUpPage />} />
+              <Route path="/sectionSelection" element={<SectionSelectionPage />} />
+              <Route path="/answerSelection" element={<AnswerSelectionPage />} />
+              <Route path="/eSign" element={<EsignaturePage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </Router>
+          </div>
+        <Footer />
+      </InspectorFormProvider>
+    </div>
   );
 }
 
