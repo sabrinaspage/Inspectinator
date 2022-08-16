@@ -20,7 +20,7 @@ function run(a: number) {
 export default function Dashboard() {
   const navigate = useNavigate();
   return (
-    <div className="container vh-100" style={{marginTop: "20vh"}}>
+    <div className="container" style={{marginTop: "9vh", marginBottom: "15vh"}}>
       <div className="row px-2">
         <div className="col-lg-7">
           <h1 className="fw-bold">Reports</h1>
