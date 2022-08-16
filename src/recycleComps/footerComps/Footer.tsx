@@ -16,9 +16,6 @@ export default function Footer() {
                             Team
                         </div>
                         <div className = "px-4">
-                            FAQ
-                        </div>
-                        <div className = "px-4">
                             Contact
                         </div>
                     </div>
