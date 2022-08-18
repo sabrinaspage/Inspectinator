@@ -17,9 +17,9 @@ function App() {
   return (
     <div style={{minHeight: "100vh", display: "flex", flexDirection: "column"}}>
       <InspectorFormProvider>
-        <Navbar />
-        <div style={{flexGrow: '1'}}>
-          <Router>
+        <Router>
+          <Navbar />
+          <div style={{flexGrow: '1'}}>
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/signIn" element={<SignInPage />} />
@@ -29,9 +29,9 @@ function App() {
               <Route path="/eSign" element={<EsignaturePage />} />
               <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
-          </Router>
           </div>
-        <Footer />
+          <Footer />
+        </Router>
       </InspectorFormProvider>
     </div>
   );
