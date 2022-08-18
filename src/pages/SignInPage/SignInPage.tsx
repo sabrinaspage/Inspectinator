@@ -6,7 +6,7 @@ import './SignInPage.css';
 export default function SignInPage() {
     return (
         <div className = "container-fluid h-100">
-            <div className = "row vh-100 vw-100">
+            <div className = "row vh-100">
                 <div className = "d-flex align-items-md-center col-lg-6 col-sm-12 justify-content-center">
                     <div className="col-md-8 col-lg-6" style={{textAlign: "left"}}>
                         <h2>Welcome Back!</h2>
@@ -20,7 +20,7 @@ export default function SignInPage() {
                         <p className='p-0 pb-1 mb-2 mt-3 fs-8'>Password</p>
                         <input style = {{borderRadius: '8px'}} type="password" className = "y-2 px-3 form-control" placeholder="Enter your password" />
 
-                        <div className='mt-4'></div>
+                        <div className='mt-3'></div>
 
                         <button style = {{borderRadius: '8px'}} className = "btn w-100 btn-dark p-2 mt-5 bg-dark">Sign In</button>
                         <p className = "text-center mt-3 pb-0 mb-0 fs-6 fst-normal text-black-50">
