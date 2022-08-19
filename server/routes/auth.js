@@ -13,16 +13,39 @@ const ObjectId = require("mongodb").ObjectId;
 
  
 // This section will help you get a list of all the records.
-recordRoutes.route("/record").get(function (req, res) {
-    let db_connect = dbo.getDb("sample_training");
+recordRoutes.route("/auth").get(function (req, res) {
+    return {
+        status: "success",
+    }
+});
+
+// This section will help you get a list of all the records.
+recordRoutes.route("/auth/checkEmail/:email").get(function (req, res) {
+    let db_connect = dbo.getDb();
     db_connect
-    .collection("grades")
-    .find({})
+    .collection("User_Data")
+    .find({email: req.params.email})
     .toArray(function (err, result) {
         if (err) throw err;
         res.json(result);
     });
 });
+
+recordRoutes.route("/auth/addUser").post(function (req, response) {
+    let db_connect = dbo.getDb();
+    let myobj = {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+    };
+
+    db_connect.collection("User_Data").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        response.json(res);
+    });
+});
+
+
  
 // // This section will help you get a single record by id
 // recordRoutes.route("/record/:id").get(function (req, res) {
