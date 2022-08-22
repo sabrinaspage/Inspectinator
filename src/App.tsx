@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import TeamPage from "./pages/TeamPage/TeamPage";
 import SectionSelectionPage from "./pages/InspectorFormFlow/SectionSelectionPage/SectionSelectionPage";
 import AnswerSelectionPage from "./pages/InspectorFormFlow/AnswerSelectionPage/AnswerSelectionPage";
 import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
@@ -22,6 +24,8 @@ function App() {
           <div style={{flexGrow: '1'}}>
             <Routes>
               <Route path="/" element={<LandingPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/team" element={<TeamPage />} />
               <Route path="/signIn" element={<SignInPage />} />
               <Route path="/signUp" element={<SignUpPage />} />
               <Route path="/sectionSelection" element={<SectionSelectionPage />} />
