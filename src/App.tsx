@@ -21,7 +21,7 @@ function App() {
       <InspectorFormProvider>
         <Router>
           <Navbar />
-          <div style={{flexGrow: '1'}}>
+          <div style={{flexGrow: '1', display: "flex",alignItems: "center", justifyContent: "center"}}>
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/about" element={<AboutPage />} />
