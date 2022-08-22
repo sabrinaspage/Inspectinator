@@ -1,11 +1,6 @@
-import { useNavigate } from "react-router-dom";
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
-// import CardGroup from 'react-bootstrap/CardGroup';
 import { Card, Button, CardGroup, ListGroup, Accordion} from 'react-bootstrap';
 
 export default function LandingPage() {
-  const navigate = useNavigate();
 
   return (
     <div>
@@ -184,7 +179,7 @@ export default function LandingPage() {
               </Accordion.Header>
               <Accordion.Body className="lead">
                 Upon successful registration, you're all set! Build your workspace and fill out your forms. 
-                Inspectinator is desgined to be very user friendly. If you do encouter any problems or 
+                Inspectinator is designed to be very user friendly. If you do encounter any problems or 
                 issues, contact us and we'll be sure to get back to you as soon as possible.
               </Accordion.Body>
             </Accordion.Item>
@@ -193,6 +188,6 @@ export default function LandingPage() {
         </Card>
 
       </div>
-  </div>
+    </div>
   );
 }
