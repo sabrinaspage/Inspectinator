@@ -1,6 +1,7 @@
 
-import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useRef, useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import './SignInPage.css';
 
@@ -11,6 +12,10 @@ export default function SignInPage() {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
+    const auth = useContext(AuthContext);
+
+    let navigate = useNavigate();
+    
     async function signInFunc() {
         const email = emailRef.current?.value;
         const password = passwordRef.current?.value;
@@ -25,7 +30,6 @@ export default function SignInPage() {
         })
     
         const records = await response.json();
-        console.log(records[0].password);
         if (records.length === 0) {
             setErrorMessage('Invalid email or password');
             return;
@@ -34,7 +38,13 @@ export default function SignInPage() {
             setErrorMessage('Invalid password');
             return;
         }
+        
+        auth.setUserData(records[0]['name'], records[0]['_id'])
+        auth.setLoggedIn(true);
+
         window.alert("Login successful");
+
+        navigate("../dashboard", { replace: true });
 
 
         setErrorMessage('');
