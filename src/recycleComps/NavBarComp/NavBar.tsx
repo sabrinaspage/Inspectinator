@@ -27,7 +27,7 @@ export default function Navbar() {
                     </div>
                     { (control === 0) &&
                         <div className='col-lg-6 d-flex justify-content-end'>
-                            <button className='bg-dark btn' style={{borderRadius: "1000px"}}>
+                            <button className='bg-primary btn' style={{borderRadius: "1000px"}}>
                                 <Link to = {"/signin"}>
                                     <p className='text-white px-3 py-1 m-0'>Sign In</p>
                                 </Link>
