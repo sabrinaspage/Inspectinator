@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { UrlsForForm } from "../../../constants/constants";
 
 export enum SectionStatus {
   NOT_STARTED,
@@ -27,7 +28,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       status: SectionStatus.NOT_STARTED,
       title: "Basic Information",
       description: "Enter basic information about the company.",
-      url: "/basic-info",
+      url: UrlsForForm.basicInfo,
     },
     {
       id: "",
@@ -37,7 +38,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       title: "High Risk Factors",
       description:
         "High Risk Factors are improper practices or procedures identified as the most prevalent contributing factors of foodborne illness or injury.",
-      url: "/high-risk",
+      url: UrlsForForm.highRiskSection,
     },
     {
       id: "",
@@ -47,7 +48,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       title: "Low Risk Factors",
       description:
         "Low Risk Factors are preventive measures to control the addition of pathogens, chemicals, and physical objects into foods.",
-      url: "/low-risk",
+      url: UrlsForForm.lowRiskSection,
     },
     {
       id: "",

@@ -50,9 +50,15 @@ export default function MainCompenent() {
         <Route path="/sectionSelection" element={<SectionSelectionPage />} />
         <Route path="/esign" element={<EsignaturePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/basic-info" element={<AnswerSelectionPage />} />
-        <Route path="/high-risk" element={<AnswerSelectionPage />} />
-        <Route path="/low-risk" element={<AnswerSelectionPage />} />
+        <Route path={UrlsForForm.basicInfo} element={<AnswerSelectionPage />} />
+        <Route
+          path={UrlsForForm.highRiskSection}
+          element={<AnswerSelectionPage />}
+        />
+        <Route
+          path={UrlsForForm.lowRiskSection}
+          element={<AnswerSelectionPage />}
+        />
         {auth.loggedIn && <Route path="/dashboard" element={<Dashboard />} />}
       </Routes>
     </div>
