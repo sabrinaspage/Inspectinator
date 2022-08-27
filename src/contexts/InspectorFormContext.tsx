@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useState } from "react";
 
-interface Row {
+export interface Row {
   number: number;
   title: string;
   correctedDuringInspection: boolean;
@@ -8,17 +8,12 @@ interface Row {
   pts: number;
 }
 
-interface LowRiskSection {
+export interface RiskSection {
   section: string;
   rows: Row[];
 }
 
-interface HighRiskSection {
-  section: string;
-  rows: Row[];
-}
-
-interface InspectorFormContextI {
+export interface InspectorFormContextI {
   basicInfo: {
     businessName: string;
     operator: string;
@@ -29,10 +24,10 @@ interface InspectorFormContextI {
     phone: string;
   };
   lowRisk: {
-    miniSections: LowRiskSection[];
+    miniSections: RiskSection[];
   };
   highRisk: {
-    miniSections: HighRiskSection[];
+    miniSections: RiskSection[];
   };
 }
 
