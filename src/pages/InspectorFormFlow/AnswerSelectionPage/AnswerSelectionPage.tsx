@@ -18,7 +18,7 @@ interface AnswerSelectionProps {
 const AnswerSelection = ({ miniSections }: AnswerSelectionProps) => {
   const navigate = useNavigate();
   return (
-    <>
+    <div className="container">
       <div className="container">
         <div className="row">
           <div className="col-1">Number</div>
@@ -29,7 +29,7 @@ const AnswerSelection = ({ miniSections }: AnswerSelectionProps) => {
         </div>
       </div>
       {miniSections.map((miniSection, index) => (
-        <Accordion defaultActiveKey={[`${index}`]} alwaysOpen>
+        <Accordion defaultActiveKey={[`0`]} alwaysOpen>
           <Accordion.Item eventKey={`${index}`}>
             <Accordion.Header>{miniSection.section}</Accordion.Header>
             <Accordion.Body>
@@ -89,15 +89,19 @@ const AnswerSelection = ({ miniSections }: AnswerSelectionProps) => {
           </h1>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 const getUrlPath = () => {
-  if (window.location.pathname === UrlsForForm.lowRiskSection)
+  if (window.location.pathname === UrlsForForm.lowRiskSection) {
+    require("./blueAccordion.css");
     return "LOW_RISK";
-  if (window.location.pathname === UrlsForForm.highRiskSection)
+  }
+  if (window.location.pathname === UrlsForForm.highRiskSection) {
+    require("./redAccordion.css");
     return "HIGH_RISK";
+  }
   return "";
 };
 

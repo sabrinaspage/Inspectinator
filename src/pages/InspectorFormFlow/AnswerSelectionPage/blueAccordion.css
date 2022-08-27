@@ -1,0 +1,15 @@
+.accordion-button:not(.collapsed) {
+  color: white;
+  font-weight: 600;
+  background-color: rgb(114, 114, 247);
+}
+
+.accordion-button.collapsed {
+  color: white;
+  font-weight: 600;
+  background-color: rgb(58, 58, 244);
+}
+
+.accordion-body {
+  background-color: rgb(184, 184, 253);
+}
