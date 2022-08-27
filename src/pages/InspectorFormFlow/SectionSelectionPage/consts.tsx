@@ -12,6 +12,7 @@ export interface InspectorFormSection {
   status: SectionStatus;
   title: string;
   description: ReactNode;
+  url: string;
 }
 
 // if we need to call the api for certain values
@@ -26,6 +27,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       status: SectionStatus.NOT_STARTED,
       title: "Basic Information",
       description: "Enter basic information about the company.",
+      url: "/basic-info",
     },
     {
       id: "",
@@ -35,6 +37,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       title: "High Risk Factors",
       description:
         "High Risk Factors are improper practices or procedures identified as the most prevalent contributing factors of foodborne illness or injury.",
+      url: "/high-risk",
     },
     {
       id: "",
@@ -44,6 +47,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       title: "Low Risk Factors",
       description:
         "Low Risk Factors are preventive measures to control the addition of pathogens, chemicals, and physical objects into foods.",
+      url: "/low-risk",
     },
     {
       id: "",
@@ -53,6 +57,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       title: "Esignature",
       description:
         "The person in charge and health regulatory authority will sign the form.",
+      url: "/esign",
     },
   ];
 }

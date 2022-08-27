@@ -14,6 +14,7 @@ const Section = ({
   status,
   title,
   description,
+  url,
 }: InspectorFormSection) => {
   const sectionStatus =
     status === SectionStatus.NOT_STARTED ? (
@@ -68,12 +69,14 @@ const Section = ({
           {description}
           <p />
           {status === SectionStatus.NOT_STARTED ? (
-            <button
-              style={{ borderRadius: "8px" }}
-              className="btn p-2 w-25 btn-dark bg-dark"
-            >
-              Start
-            </button>
+            <a href={url}>
+              <button
+                style={{ borderRadius: "8px" }}
+                className="btn p-2 w-25 btn-dark bg-dark"
+              >
+                Start
+              </button>
+            </a>
           ) : (
             <button
               style={{ borderRadius: "8px" }}
