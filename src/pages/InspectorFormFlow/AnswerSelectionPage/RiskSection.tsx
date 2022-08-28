@@ -42,7 +42,7 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
             <Accordion.Header>{miniSection.section}</Accordion.Header>
             <Accordion.Body>
               <div className="container">
-                {miniSection.rows.map((row, index) => {
+                {miniSection.rows.map((row) => {
                   questionNum += 1;
                   return (
                     <div className="row">
