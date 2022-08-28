@@ -7,7 +7,7 @@ export interface Row {
   pts: number;
 }
 
-export interface RiskSection {
+export interface MiniRiskSection {
   section: string;
   rows: Row[];
 }
@@ -23,10 +23,10 @@ export interface InspectorFormContextI {
     phone: string;
   };
   lowRisk: {
-    miniSections: RiskSection[];
+    miniSections: MiniRiskSection[];
   };
   highRisk: {
-    miniSections: RiskSection[];
+    miniSections: MiniRiskSection[];
   };
 }
 
