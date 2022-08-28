@@ -17,6 +17,8 @@ interface AnswerSelectionProps {
 
 const AnswerSelection = ({ miniSections }: AnswerSelectionProps) => {
   const navigate = useNavigate();
+  let questionNum = 0;
+
   return (
     <div className="container">
       <div className="container">
@@ -34,31 +36,34 @@ const AnswerSelection = ({ miniSections }: AnswerSelectionProps) => {
             <Accordion.Header>{miniSection.section}</Accordion.Header>
             <Accordion.Body>
               <div className="container">
-                {miniSection.rows.map((row) => (
-                  <div className="row">
-                    <div className="col-1">{row.number}</div>
-                    <div className="col-sm">{row.title}</div>
-                    <div className="col-2">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckChecked"
-                        checked={row.repeatViolation}
-                      />
+                {miniSection.rows.map((row, index) => {
+                  questionNum += 1;
+                  return (
+                    <div className="row">
+                      <div className="col-1">{questionNum * 100}</div>
+                      <div className="col-sm">{row.title}</div>
+                      <div className="col-2">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                          checked={row.repeatViolation}
+                        />
+                      </div>
+                      <div className="col-2">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                          checked={row.correctedDuringInspection}
+                        />
+                      </div>
+                      <div className="col-1">{row.pts}</div>
                     </div>
-                    <div className="col-2">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckChecked"
-                        checked={row.correctedDuringInspection}
-                      />
-                    </div>
-                    <div className="col-1">{row.pts}</div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </Accordion.Body>
           </Accordion.Item>

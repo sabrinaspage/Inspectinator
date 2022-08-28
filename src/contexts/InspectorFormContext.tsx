@@ -1,7 +1,6 @@
 import { createContext, PropsWithChildren, useState } from "react";
 
 export interface Row {
-  number: number;
   title: string;
   correctedDuringInspection: boolean;
   repeatViolation: boolean;
