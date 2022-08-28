@@ -1,4 +1,5 @@
 import { createContext, PropsWithChildren, useState } from "react";
+import { highRiskQuestions, lowRiskQuestions } from "../constants/constants";
 
 export interface Row {
   title: string;
@@ -46,10 +47,10 @@ const useValue = () => {
       phone: "",
     },
     lowRisk: {
-      miniSections: [],
+      miniSections: [...lowRiskQuestions],
     },
     highRisk: {
-      miniSections: [],
+      miniSections: [...highRiskQuestions],
     },
   });
 
