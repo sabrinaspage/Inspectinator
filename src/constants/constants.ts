@@ -1,5 +1,5 @@
 export const UrlsForForm = {
-  basicInfo: "/basic-info",
+  basicInfoSection: "/basic-info",
   lowRiskSection: "/low-risk",
   highRiskSection: "/high-risk",
 };

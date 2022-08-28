@@ -28,7 +28,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       status: SectionStatus.NOT_STARTED,
       title: "Basic Information",
       description: "Enter basic information about the company.",
-      url: UrlsForForm.basicInfo,
+      url: UrlsForForm.basicInfoSection,
     },
     {
       id: "",
