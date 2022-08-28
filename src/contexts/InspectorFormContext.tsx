@@ -31,13 +31,19 @@ export interface InspectorFormContextI {
   };
 }
 
+export enum InspectorFormSectionType {
+  BASIC_INFO = "basicInfo",
+  LOW_RISK = "lowRisk",
+  HIGH_RISK = "highRisk",
+}
+
 export const InspectorFormContext = createContext(
   {} as ReturnType<typeof useValue>
 );
 
 const useValue = () => {
   const [initialForm, setForm] = useState<InspectorFormContextI>({
-    basicInfo: {
+    [InspectorFormSectionType.BASIC_INFO]: {
       businessName: "",
       operator: "",
       address: "",
@@ -46,10 +52,10 @@ const useValue = () => {
       email: "",
       phone: "",
     },
-    lowRisk: {
+    [InspectorFormSectionType.LOW_RISK]: {
       miniSections: [...lowRiskQuestions],
     },
-    highRisk: {
+    [InspectorFormSectionType.HIGH_RISK]: {
       miniSections: [...highRiskQuestions],
     },
   });

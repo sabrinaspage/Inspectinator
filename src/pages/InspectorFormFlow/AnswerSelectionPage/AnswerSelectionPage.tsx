@@ -1,10 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import {
-  highRiskQuestions,
-  lowRiskQuestions,
-  UrlsForForm,
-} from "../../../constants/constants";
-import { InspectorFormContext } from "../../../contexts/InspectorFormContext";
+import { useEffect, useState } from "react";
+import { UrlsForForm } from "../../../constants/constants";
 import { BasicInfoSection } from "./BasicInfoSection";
 import { RiskSection } from "./RiskSection";
 
