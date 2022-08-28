@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { UrlsForForm } from "../../../constants/constants";
+import { InspectorFormSectionType } from "../../../contexts/InspectorFormContext";
 
 export enum SectionStatus {
   NOT_STARTED,
@@ -8,6 +9,7 @@ export enum SectionStatus {
 
 export interface InspectorFormSection {
   id: string;
+  token?: InspectorFormSectionType;
   headingId: string;
   collapseId: string;
   status: SectionStatus;
@@ -23,6 +25,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
   return [
     {
       id: "",
+      token: InspectorFormSectionType.BASIC_INFO,
       headingId: "flush-headingOne",
       collapseId: "flush-collapseOne",
       status: SectionStatus.NOT_STARTED,
@@ -32,6 +35,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
     },
     {
       id: "",
+      token: InspectorFormSectionType.HIGH_RISK,
       headingId: "flush-headingTwo",
       collapseId: "flush-collapseTwo",
       status: SectionStatus.NOT_STARTED,
@@ -42,6 +46,7 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
     },
     {
       id: "",
+      token: InspectorFormSectionType.LOW_RISK,
       headingId: "flush-headingThree",
       collapseId: "flush-collapseThree",
       status: SectionStatus.NOT_STARTED,
