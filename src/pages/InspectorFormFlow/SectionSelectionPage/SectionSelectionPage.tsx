@@ -100,7 +100,7 @@ export default function SectionSelectionPage() {
   }, [inspector]);
 
   return (
-    <div>
+    <div className = "w-100 mb-5 pb-4">
       <div className="mt-5 container">
         <div className="row px-2">
           <div className="col-md-10">

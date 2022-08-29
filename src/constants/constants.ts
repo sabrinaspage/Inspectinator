@@ -131,26 +131,22 @@ export const highRiskQuestions = [
   },
 ];
 
+
+
 export const lowRiskQuestions = [
   {
     section: "Food Temperature Control",
     rows: [
       {
         title: "Food received at proper temperature",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 5,
       },
       {
         title: "Adequate equipment for temperature control",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 5,
       },
       {
         title: "Proper thawing methods used",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 3,
       },
     ],
@@ -160,8 +156,6 @@ export const lowRiskQuestions = [
     rows: [
       {
         title: "Proper labeling, signage",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 5,
       },
     ],
@@ -171,33 +165,23 @@ export const lowRiskQuestions = [
     rows: [
       {
         title: "Insects, rodents, animals not present; entrance controlled",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 5,
       },
       {
         title:
           "Potential food contamination prevented during delivery preparation, storage, display",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 5,
       },
       {
         title: "Wiping cloths properly used, stored; proper sanitizer",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 5,
       },
       {
         title: "Employee cleanliness and hygiene",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 3,
       },
       {
         title: "Proper eating, tasting, drinking, or tobacco use",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 3,
       },
     ],
@@ -207,22 +191,68 @@ export const lowRiskQuestions = [
     rows: [
       {
         title: "In-use utensils properly stored",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 3,
       },
       {
         title: "Utensils, equipment, linens properly stored, used, handled",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 3,
       },
       {
         title: "Single-use and single-service articles properly stored, used",
-        correctedDuringInspection: false,
-        repeatViolation: false,
         pts: 3,
       },
     ],
   },
 ];
+
+
+export const temp = [
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: true,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  },
+  {
+    correctedDuringInspection: false,
+    repeatViolation: false,
+  }
+]

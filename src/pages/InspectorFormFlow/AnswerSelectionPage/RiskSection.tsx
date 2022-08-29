@@ -6,17 +6,28 @@ import {
   MiniRiskSection,
 } from "../../../contexts/InspectorFormContext";
 
+import { temp } from "../../../constants/constants";
+
 interface RiskSectionProps {
   type: string;
+}
+
+interface Data {
+  correctedDuringInspection: boolean;
+  repeatViolation: boolean;
 }
 
 export const RiskSection = ({ type }: RiskSectionProps) => {
   const [miniSections, setMiniSections] = useState<MiniRiskSection[]>([]); // use when you want to keep track of user changes
   const { initialForm, setForm } = useContext(InspectorFormContext); // use when saving permanantly
+
+  const [prevAnswers, setPrevAnswers] = useState<Data[]>([]);
+
   const navigate = useNavigate();
   let questionNum = 0;
 
   useEffect(() => {
+    setPrevAnswers(temp);
     switch (type) {
       case "LOW_RISK":
         return setMiniSections([...initialForm.lowRisk.miniSections]);
@@ -25,46 +36,93 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
     }
   }, []);
 
+
+  function handleRepeatChange(index: number) {
+    console.log(index);
+    const temp = prevAnswers;
+    temp[index].repeatViolation = !temp[index].repeatViolation;
+    setPrevAnswers(temp);
+  }
+
+  function handleCorrectedChange(index: number) {
+    const temp = prevAnswers;
+    temp[index].correctedDuringInspection = !temp[index].correctedDuringInspection;
+    setPrevAnswers(temp);
+  }
+
+  function SaveData() {
+    console.log(prevAnswers);
+  }
+
   return (
-    <div className="container">
+    <div className="container my-5 py-5">
       <div className="container">
-        <div className="row">
+        <div className="row mb-4">
           <div className="col-1">Number</div>
-          <div className="col-sm">Title</div>
+          <div className="col-5">Title</div>
           <div className="col-2">Repeat Violation</div>
-          <div className="col-2">Corrected During Inspection</div>
+          <div className="col-3">Corrected During Inspection</div>
           <div className="col-1">Points</div>
         </div>
       </div>
-      {miniSections.map((miniSection, index) => (
+      {miniSections.map((miniSection, mainIndex) => (
         <Accordion defaultActiveKey={[`0`]} alwaysOpen>
-          <Accordion.Item eventKey={`${index}`}>
+          <Accordion.Item eventKey={`${mainIndex}`}>
             <Accordion.Header>{miniSection.section}</Accordion.Header>
             <Accordion.Body>
               <div className="container">
-                {miniSection.rows.map((row) => {
+                {miniSection.rows.map((row, index) => {
                   questionNum += 1;
+                  var g = questionNum - 1;
                   return (
-                    <div className="row">
+                    <div className="row my-2">
                       <div className="col-1">{questionNum * 100}</div>
-                      <div className="col-sm">{row.title}</div>
+                      <div className="col-5">{row.title}</div>
                       <div className="col-2">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                          checked={row.repeatViolation}
-                        />
+                        {
+                          prevAnswers[g].repeatViolation && 
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckChecked"
+                            onClick={() => handleRepeatChange(g)}
+                            defaultChecked
+                          />
+                        }
+                        {
+                          !prevAnswers[g].repeatViolation && 
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckChecked"
+                            onClick={() => handleRepeatChange(g)}
+                          />
+                        }
                       </div>
-                      <div className="col-2">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                          checked={row.correctedDuringInspection}
-                        />
+                      <div className="col-3">
+                        {
+                          prevAnswers[g].correctedDuringInspection &&
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckChecked"
+                            defaultChecked
+                            onClick={() => handleCorrectedChange(g)}
+                          />
+                        }
+                        {
+                          !prevAnswers[g].correctedDuringInspection &&
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckChecked"
+                            onClick={() => handleCorrectedChange(g)}
+                          />
+                        }
                       </div>
                       <div className="col-1">{row.pts}</div>
                     </div>
@@ -75,7 +133,7 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
           </Accordion.Item>
         </Accordion>
       ))}
-      <div className="row px-2">
+      <div className="row px-2 mt-5 mb-4">
         <div className="d-flex align-items-start col-md-2">
           <h1 className="w-100">
             <button
@@ -91,7 +149,7 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
         <div className="d-flex align-items-start col-md-2">
           <h1 className="w-100">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => SaveData()}
               style={{ borderRadius: "8px" }}
               className="btn p-2 w-100 btn-dark bg-dark"
             >
