@@ -3,8 +3,6 @@ import { highRiskQuestions, lowRiskQuestions } from "../constants/constants";
 
 export interface Row {
   title: string;
-  correctedDuringInspection: boolean;
-  repeatViolation: boolean;
   pts: number;
 }
 

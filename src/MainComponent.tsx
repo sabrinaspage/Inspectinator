@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard/mainDashboard/Dashboard";
 import { useState, useEffect, useContext } from "react";
 
 import { AuthContext } from "./contexts/AuthContext";
+import { UrlsForForm } from "./constants/constants";
 
 export default function MainCompenent() {
   const location = useLocation();
@@ -50,7 +51,7 @@ export default function MainCompenent() {
         <Route path="/sectionSelection" element={<SectionSelectionPage />} />
         <Route path="/esign" element={<EsignaturePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path={UrlsForForm.basicInfo} element={<AnswerSelectionPage />} />
+        <Route path={UrlsForForm.basicInfoSection} element={<AnswerSelectionPage />} />
         <Route
           path={UrlsForForm.highRiskSection}
           element={<AnswerSelectionPage />}
