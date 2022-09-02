@@ -6,7 +6,9 @@ import {
   MiniRiskSection,
 } from "../../../contexts/InspectorFormContext";
 
-import { temp } from "../../../constants/constants";
+import { AuthContext } from "../../../contexts/AuthContext";
+
+import { temp, tempTwo } from "../../../constants/constants";
 
 interface RiskSectionProps {
   type: string;
@@ -23,15 +25,30 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
 
   const [prevAnswers, setPrevAnswers] = useState<Data[]>([]);
 
+  const [state, setState] = useState(0);
+
   const navigate = useNavigate();
   let questionNum = 0;
 
+  const auth = useContext(AuthContext);
+
   useEffect(() => {
-    setPrevAnswers(temp);
     switch (type) {
       case "LOW_RISK":
+        setState(0);
+        if (auth.lowRiskAnswers.length > 0) {
+          setPrevAnswers(auth.lowRiskAnswers);
+        } else {
+          setPrevAnswers(temp);
+        }
         return setMiniSections([...initialForm.lowRisk.miniSections]);
       case "HIGH_RISK":
+        setState(1);
+        if (auth.highRiskAnswers.length > 0) {
+          setPrevAnswers(auth.highRiskAnswers);
+        } else {
+          setPrevAnswers(tempTwo);
+        }
         return setMiniSections([...initialForm.highRisk.miniSections]);
     }
   }, []);
@@ -52,6 +69,14 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
 
   function SaveData() {
     console.log(prevAnswers);
+    console.log(auth.highRiskAnswers);
+    alert("Information Saved");
+    if (state) {
+      auth.setHighRiskAnswers(prevAnswers);
+    } else {
+      auth.setLowRiskAnswers(prevAnswers);
+    }
+    navigate("../sectionSelection");
   }
 
   return (
@@ -137,7 +162,7 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
         <div className="d-flex align-items-start col-md-2">
           <h1 className="w-100">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("../sectionSelection")}
               style={{ borderRadius: "8px" }}
               className="btn p-2 w-100 btn-light bg-light border border-secondary"
             >

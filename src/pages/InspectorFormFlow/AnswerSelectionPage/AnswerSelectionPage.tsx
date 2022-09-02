@@ -15,6 +15,7 @@ const getUrlPath = () => {
     require("./redAccordion.css");
     return "HIGH_RISK";
   }
+  require("./AnswerSelectionPage.css");
   return "";
 };
 

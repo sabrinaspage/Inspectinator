@@ -13,6 +13,7 @@ module.exports = {
         // Verify we got a good "db" object
             if (db) {
                 _db = db.db("Auth_Database");
+                _documentdb = db.db("Documents");
                 console.log("Successfully connected to MongoDB."); 
             }
             return callback(err);
@@ -22,4 +23,8 @@ module.exports = {
     getDb: function () {
         return _db;
     },
+
+    getDocumentDb: function () {
+        return _documentdb;
+    }
 };

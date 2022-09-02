@@ -27,7 +27,7 @@ export default function SignInPage() {
 
         const response = await fetch('http://localhost:5000/auth/checkEmail/' + email, {
             method: "GET",
-        })
+        });
     
         const records = await response.json();
         if (records.length === 0) {

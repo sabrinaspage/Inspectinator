@@ -1,4 +1,6 @@
 const express = require("express");
+
+var http = require('http');
  
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -12,8 +14,35 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 
-dataRoutes.route("/data").get(function (req, res) {
+dataRoutes.route("/document").get(function (req, res) {
     res.send("Hello from data checkkk on trwoi");
+});
+
+dataRoutes.route("/document/addDoc").post(function (req, response) {
+    let db_connect = dbo.getDocumentDb();
+    let myobj = {
+        basicInformation : req.body.basicInformation,
+        highRisk : req.body.highRisk,
+        lowRisk : req.body.lowRisk,
+    };
+
+    db_connect.collection("records").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        var temp = {documents : res.insertedId};
+
+        let myquery = { _id: ObjectId("62fed42263c2656a17e3f0cb") };
+        let db_user = dbo.getDb();
+
+        let newData =  { $push: temp};
+
+        db_user.collection("User_Data").updateOne(
+        myquery,
+        newData, 
+        function (err, res) {
+            if (err) throw err;
+            response.json(res);
+        });
+    });
 });
  
 // This section will help you get a list of all the records.

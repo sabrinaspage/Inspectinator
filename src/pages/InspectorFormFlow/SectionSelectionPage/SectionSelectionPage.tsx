@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   InspectorFormSection,
   inspectorFormSections,
@@ -7,6 +7,7 @@ import {
 } from "./consts";
 import { InspectorFormContext } from "../../../contexts/InspectorFormContext";
 import "./SectionSelectionPage.css";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const Section = ({
   collapseId,
@@ -60,7 +61,7 @@ const Section = ({
       </h2>
       <div
         id={collapseId}
-        className="accordion-collapse collapse"
+        className="accordion-collapse collapse my-3"
         aria-labelledby={headingId}
         data-bs-parent="#accordionFlushExample"
         style={{ height: "100px" }}
@@ -69,21 +70,23 @@ const Section = ({
           {description}
           <p />
           {status === SectionStatus.NOT_STARTED ? (
-            <a href={url}>
+            <Link to={url}>
               <button
                 style={{ borderRadius: "8px" }}
                 className="btn p-2 w-25 btn-dark bg-dark"
               >
                 Start
               </button>
-            </a>
+            </Link>
           ) : (
-            <button
-              style={{ borderRadius: "8px" }}
-              className="btn p-2 w-100 btn-dark bg-dark"
-            >
-              Update
-            </button>
+            <Link to={url}>
+              <button
+                style={{ borderRadius: "8px" }}
+                className="btn p-2 w-25 btn-dark bg-dark"
+              >
+                Update
+              </button>
+            </Link>
           )}
         </div>
       </div>
@@ -95,12 +98,46 @@ export default function SectionSelectionPage() {
   const navigate = useNavigate();
   const inspector = useContext(InspectorFormContext);
 
+  const auth = useContext(AuthContext);
+
   useEffect(() => {
     console.log(inspector.initialForm);
   }, [inspector]);
 
+  async function saveDocument() {
+    const documentInfo = { 
+      basicInformation : auth.basicInformation,
+      highRisk : auth.highRiskAnswers,
+      lowRisk : auth.lowRiskAnswers,
+    };
+ 
+    await fetch("http://localhost:5000/document/addDoc", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+       },
+        body: JSON.stringify(documentInfo),
+    })
+    .then(async response => {
+      const isJson = response.headers.get('content-type')?.includes('application/json');
+      const data = isJson && await response.json();
+
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response status
+        const error = (data && data.message) || response.status;
+        return Promise.reject(error);
+      } else {
+        console.log(response);
+      }
+    })
+    .catch(error => {
+        console.error('There was an error!', error);
+    });
+  }
+
   return (
-    <div className = "w-100 mb-5 pb-4">
+    <div className = "w-100 mb-5 pb-4 mt-4">
       <div className="mt-5 container">
         <div className="row px-2">
           <div className="col-md-10">
@@ -115,7 +152,7 @@ export default function SectionSelectionPage() {
             ))}
           </div>
         </div>
-        <div className="row px-2">
+        <div className="row px-2 mt-5 pt-4">
           <div className="d-flex align-items-start col-md-2">
             <h1 className="w-100">
               <button
@@ -131,7 +168,7 @@ export default function SectionSelectionPage() {
           <div className="d-flex align-items-start col-md-2">
             <h1 className="w-100">
               <button
-                onClick={() => navigate("#")}
+                onClick={() => saveDocument()}
                 style={{ borderRadius: "8px" }}
                 className="btn p-2 w-100 btn-dark bg-dark"
               >

@@ -17,3 +17,18 @@
 .form-control {
   padding: 8px 10px;
 }
+
+
+.accordion-button:not(.collapsed) {
+  color: black;
+  background-color: rgba(0, 0, 0, 5%);;
+}
+
+.accordion-button.collapsed {
+  color: black;
+  background-color: white;
+}
+
+.accordion-body {
+  background-color: white;
+}
