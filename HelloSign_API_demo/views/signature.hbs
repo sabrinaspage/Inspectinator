@@ -8,7 +8,8 @@
       const hs_client = new window.HelloSign({clientId: "{{hellosign_client_id}}" });
       // Event triggered when the file is sent for signature
       hs_client.on('sign', (data) => {
-        document.body.innerHTML = "<h2>Thanks for signing the CLA!</h2>"
+        document.body.innerHTML = "<h1>Inspection Process complete!</h1>\
+                                   <button>Return to Dashboard</button>";
       });
 
       let hs_options = { skipDomainVerification: true };
