@@ -7,6 +7,7 @@ import {
 } from "./consts";
 import { InspectorFormContext } from "../../../contexts/InspectorFormContext";
 import "./SectionSelectionPage.css";
+import { Pill } from "../../../recycleComps/Pill";
 
 const Section = ({
   collapseId,
@@ -18,29 +19,9 @@ const Section = ({
 }: InspectorFormSection) => {
   const sectionStatus =
     status === SectionStatus.NOT_STARTED ? (
-      <div
-        style={{
-          borderRadius: "30px",
-          backgroundColor: "#FEF3F2",
-        }}
-        className="py-1 px-3 ms-2"
-      >
-        <p style={{ color: "#F04438", fontWeight: "500" }} className="m-0">
-          <small>Not Started</small>
-        </p>
-      </div>
+      <Pill title="Not Started" color="#FEF3F2" textColor="#F04438" />
     ) : (
-      <div
-        style={{
-          borderRadius: "30px",
-          backgroundColor: "#ECFDF3",
-        }}
-        className="py-1 px-3 ms-2"
-      >
-        <p style={{ color: "#12B76A", fontWeight: "500" }} className="m-0">
-          <small>Saved</small>
-        </p>
-      </div>
+      <Pill title="Saved" color="#ECFDF3" textColor="#12B76A" />
     );
 
   return (
@@ -100,7 +81,7 @@ export default function SectionSelectionPage() {
   }, [inspector]);
 
   return (
-    <div className = "w-100 mb-5 pb-4">
+    <div className="w-100 mb-5 pb-4">
       <div className="mt-5 container">
         <div className="row px-2">
           <div className="col-md-10">
