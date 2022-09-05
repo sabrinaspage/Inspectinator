@@ -34,7 +34,7 @@ const Section = ({
           data-bs-target={`#${collapseId}`}
           aria-expanded="false"
           aria-controls={collapseId}
-          style={{ height: "100px" }}
+          style={{ height: "115px" }}
         >
           {title} {sectionStatus}
         </button>
@@ -96,7 +96,7 @@ export default function SectionSelectionPage() {
             ))}
           </div>
         </div>
-        <div className="row px-2">
+        <div className="row px-2 pt-3">
           <div className="d-flex align-items-start col-md-2">
             <h1 className="w-100">
               <button
@@ -116,7 +116,7 @@ export default function SectionSelectionPage() {
                 style={{ borderRadius: "8px" }}
                 className="btn p-2 w-100 btn-dark bg-dark"
               >
-                Review your Form
+                Review and Sign
               </button>
             </h1>
           </div>
