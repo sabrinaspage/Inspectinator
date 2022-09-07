@@ -112,7 +112,7 @@ export default function SectionSelectionPage() {
           <div className="d-flex align-items-start col-md-2">
             <h1 className="w-100">
               <button
-                onClick={() => navigate("#")}
+                onClick={() => navigate("/esign")}
                 style={{ borderRadius: "8px" }}
                 className="btn p-2 w-100 btn-dark bg-dark"
               >
