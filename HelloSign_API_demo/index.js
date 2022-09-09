@@ -20,11 +20,13 @@ app.get('/sectionSelection', async (req,res)=>{
 
 // signature page
 app.get('/signature', async (req,res)=>{
-    let embed_url;
+    let result, embed_url, sign_id;
     try
     {
       // Extract the email & name from the current user session or MongoDB
-      embed_url = await hellosign.getEmbedURL("inspector@gmail.com", "John Smith");
+      result = await hellosign.getEmbedURL("inspector@gmail.com", "John Smith");
+      embed_url=result[0];
+      sign_id=result[1]
     }
     catch(error)
     {
@@ -36,6 +38,7 @@ app.get('/signature', async (req,res)=>{
       layout: false,
       hellosign_client_id: process.env.HELLOSIGN_CLIENT_ID,
       embed_url: embed_url,
+      sign_id: sign_id
     };
     res.render("signature", args);
 });
