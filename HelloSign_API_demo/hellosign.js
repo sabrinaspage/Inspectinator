@@ -2,7 +2,7 @@ require('dotenv').config({path: "./hellosign.env"});
 const hellosign = require("hellosign-sdk")({ key: process.env.HELLOSIGN_API_KEY });
 
 
-const getEmbedURL = async (inspector_email,inspector_name)=>{
+const getEmbedURL = async (inspector_email,inspector_name, client_email, client_name)=>{
   let options = {
     test_mode: 1,
     clientId: process.env.HELLOSIGN_CLIENT_ID,
@@ -17,7 +17,9 @@ const getEmbedURL = async (inspector_email,inspector_name)=>{
     ],
     custom_fields: {  //Merge fields defined in the template
       inspector_name: inspector_name,
-      inspector_email: inspector_email
+      inspector_email: inspector_email,
+      client_name: client_name,
+      client_email: client_email
     }
   }
 

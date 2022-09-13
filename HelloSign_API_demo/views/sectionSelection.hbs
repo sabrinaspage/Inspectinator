@@ -1,7 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <script>
+    function submitData()
+    {
+      fetch("http://localhost:3000/sectionSelection", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: document.getElementById("email").value,
+          name: document.getElementById("name").value
+        })
+      }).then(response => response.json())
+      .then(data => {
+        console.log("Success!",data);
+      }).catch((error) => {
+        console.log("Error",error)
+      });
+    }
+  </script>
   <body>
     <h1>Health Inspector Form</h1>
+    <p>Email:</p>
+    <input type="text" id="email" value="michael@gmail.com"/>
+    <p>Name:</p>
+    <input type="text" id="name" value="michael"/>
+    <p></p>
+    <form method="POST" enctype = "multipart/form-data"><!-- <form method="POST"> action="/signature"  type="submit"-->
+        <input type="submit" value="Submit" onclick="submitData();"/>
+    </form>
     <form action="/signature">
         <input type="submit" value="Review and Sign"/>
     </form>
