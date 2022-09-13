@@ -1,8 +1,7 @@
 require('dotenv').config({path: "./hellosign.env"});
 const hellosign = require("hellosign-sdk")({ key: process.env.HELLOSIGN_API_KEY });
 
-
-const getEmbedURL = async (inspector_email,inspector_name, client_email, client_name)=>{
+const send_Esigns = async (basic_info)=>{
   let options = {
     test_mode: 1,
     clientId: process.env.HELLOSIGN_CLIENT_ID,
@@ -10,16 +9,21 @@ const getEmbedURL = async (inspector_email,inspector_name, client_email, client_
     subject: 'Inspector Form',
     signers: [
       {
-        email_address: inspector_email,
+        email_address: basic_info.inspector.email,
         name: 'Inspector',
-        role: process.env.SIGNER_ROLE_NAME
+        role: process.env.SIGNER_ROLE_1
+      },
+      {
+        email_address: basic_info.client.email,
+        name: 'Client',
+        role: process.env.SIGNER_ROLE_2
       }
     ],
     custom_fields: {  //Merge fields defined in the template
-      inspector_name: inspector_name,
-      inspector_email: inspector_email,
-      client_name: client_name,
-      client_email: client_email
+      inspector_name: basic_info.inspector.name,
+      inspector_email: basic_info.inspector.email,
+      client_name: basic_info.client.name,
+      client_email: basic_info.client.email
     }
   }
 
@@ -45,9 +49,24 @@ const getEmbedURL = async (inspector_email,inspector_name, client_email, client_
     statusCode: embedded_resp["statusCode"]
   }
   console.log("GET SignUrl:",get_SignUrl);
-  return [embedded_resp.embedded.sign_url, get_SignReq["signatures"]["signature_id"]];
+  return {
+    inspector: {
+      email: basic_info.inspector.email,
+      name: basic_info.inspector.name,
+      role: process.env.SIGNER_ROLE_1,
+      sign_id: get_SignReq.signatures.signature_id,
+      status: "Not sent."
+    },
+    client: {
+      email: basic_info.client.email,
+      name: basic_info.client.name,
+      role: process.env.SIGNER_ROLE_2,
+      sign_id: get_SignReq.signatures.signature_id,
+      status: "Not sent."
+    }
+  };
 }
 
 module.exports = {
-  getEmbedURL: getEmbedURL
+  send_Esigns: send_Esigns
 };

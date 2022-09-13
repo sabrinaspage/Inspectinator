@@ -19,14 +19,24 @@ app.get('/sectionSelection', async (req,res)=>{
 });
 let bodyparser=require("body-parser");
 let jsonParser=bodyparser.json();
-let client_email="example@gmail.com";
-let client_name="example";
+let basic_info= {
+  // Lets pretend this is the data extrcated from the current Inspectinator user session
+  inspector: {
+    email: "michaelsalamon78@gmail.com",
+    name: "Michael Salamon"
+  },
+  // Placeholder info
+  client: {
+    email: "example@gmail.com",
+    name: "John Smith"
+  }
+};
 app.post('/sectionSelection', jsonParser, async (req,res)=>{
   if("email" in req.body && "name" in req.body)
   {
-    client_email=req.body.email;
-    client_name=req.body.name;
-    console.log("client_email:",client_email,"client_name:",client_name);
+    basic_info.client.email=req.body.email;
+    basic_info.client.name=req.body.name;
+    console.log("client_email:",basic_info.client.email,"client_name:",basic_info.client.name);
     res.json(req.body);
   }
   else
@@ -35,14 +45,14 @@ app.post('/sectionSelection', jsonParser, async (req,res)=>{
 
 // signature page
 app.get('/signature', async (req,res)=>{
-  console.log("client_email:",client_email,"client_name:",client_name);
-  let result, embed_url, sign_id;
+  let result;
   try
   {
     // Extract the email & name from the current user session or MongoDB
-    result = await hellosign.getEmbedURL("inspector@gmail.com", "John Smith", client_email, client_name);
-    embed_url=result[0];
-    sign_id=result[1]
+    result = await hellosign.send_Esigns(basic_info);
+    // Since we've successfully arrived at the /signature page, an email 
+    // has been sent to the inspector. Update the status.
+    result.inspector.status="Sent! Awaiting Response.";
   }
   catch(error)
   {
@@ -50,11 +60,5 @@ app.get('/signature', async (req,res)=>{
     res.status(500);
     return res.send("<h2>An error ocurred with HelloSign</h2>");
   }
-  let args = {
-    layout: false,
-    hellosign_client_id: process.env.HELLOSIGN_CLIENT_ID,
-    embed_url: embed_url,
-    sign_id: sign_id
-  };
-  res.render("signature", args);
+  res.render("signature", result);
 });

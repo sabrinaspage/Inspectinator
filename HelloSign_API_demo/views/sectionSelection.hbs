@@ -22,13 +22,19 @@
     }
   </script>
   <body>
-    <h1>Health Inspector Form</h1>
+    <h1>Inspectinator: e-sign</h1>
+    <p><strong>
+      It's time to complete the inspection process! Please input the client email and name. 
+      Upon clicking 'Review and Sign', an email will be sent to your inbox. There, you can 
+      submit an e-signature. Upon completion, your client will automatically recieve an 
+      e-signature request. You can view the status of both signature requests on the next page.
+    </strong></p>
     <p>Email:</p>
-    <input type="text" id="email" value="michael@gmail.com"/>
+    <input type="text" id="email" value="michael37_37@outlook.com"/>
     <p>Name:</p>
-    <input type="text" id="name" value="michael"/>
+    <input type="text" id="name" value="Michaels Twin"/>
     <p></p>
-    <form method="POST" enctype = "multipart/form-data"><!-- <form method="POST"> action="/signature"  type="submit"-->
+    <form method="POST" enctype = "multipart/form-data">
         <input type="submit" value="Submit" onclick="submitData();"/>
     </form>
     <form action="/signature">
