@@ -28,40 +28,34 @@ const send_Esigns = async (basic_info)=>{
   }
 
   // 1st create an embeded signature request using a template
-  let response = await hellosign.signatureRequest.createEmbeddedWithTemplate(options);
-  const get_SignReq= {
+  // createEmbeddedWithTemplate
+  let response = await hellosign.signatureRequest.sendWithTemplate(options);
+  const post_SignReq= {
     signature_request_id: response["signature_request"]["signature_request_id"],
     test_mode: response["signature_request"]["test_mode"],
     title: response["signature_request"]["title"],
     custom_fields: response["signature_request"]["custom_fields"],
     files_url: response["signature_request"]["files_url"],
     details_url: response["signature_request"]["details_url"],
-    signatures: response["signature_request"]["signatures"][0],
+    signature_inspector: response["signature_request"]["signatures"][0],
+    signature_client: response["signature_request"]["signatures"][1],
     statusCode: response["statusCode"]
   }
-  console.log("GET signatureRequest:",get_SignReq);
-  let signature_id = response.signature_request.signatures[0].signature_id;
+  console.log("POST signatureRequest:", post_SignReq);
 
-  // 2nd fetch the url to embed specific for the first (and only) signer
-  let embedded_resp = await hellosign.embedded.getSignUrl(signature_id);
-  const get_SignUrl= {
-    date: embedded_resp["resHeaders"]["date"],
-    statusCode: embedded_resp["statusCode"]
-  }
-  console.log("GET SignUrl:",get_SignUrl);
   return {
     inspector: {
       email: basic_info.inspector.email,
       name: basic_info.inspector.name,
       role: process.env.SIGNER_ROLE_1,
-      sign_id: get_SignReq.signatures.signature_id,
+      sign_id: post_SignReq.signature_inspector.signature_id,
       status: "Not sent."
     },
     client: {
       email: basic_info.client.email,
       name: basic_info.client.name,
       role: process.env.SIGNER_ROLE_2,
-      sign_id: get_SignReq.signatures.signature_id,
+      sign_id: post_SignReq.signature_client.signature_id,
       status: "Not sent."
     }
   };
