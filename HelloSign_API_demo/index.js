@@ -50,9 +50,6 @@ app.get('/signature', async (req,res)=>{
   {
     // Extract the email & name from the current user session or MongoDB
     result = await hellosign.send_Esigns(basic_info);
-    // Since we've successfully arrived at the /signature page, an email 
-    // has been sent to the inspector. Update the status.
-    result.inspector.status="Sent! Awaiting Response.";
   }
   catch(error)
   {
