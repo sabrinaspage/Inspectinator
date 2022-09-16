@@ -25,14 +25,15 @@ const useAuth = () => {
 
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
+
+
   const [lowRiskAnswers, setLowRiskAnswers] = useState<Data[]>([]);
   const [highRiskAnswers, setHighRiskAnswers] = useState<Data[]>([]);
-
   const [basicInformation, setBasicInformation] = useState<BasicInfo[]>([]);
 
   function setUserData(name: string, id: string) {
     setUserName(name);
-    setUserId(id)
+    setUserId(id);
   }
 
   return {

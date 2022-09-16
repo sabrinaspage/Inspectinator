@@ -2,19 +2,10 @@ const express = require('express');
 const app = express();
 const logger = require('morgan'); // Adds Http logging into the console
 require('hbs');  // Handlebars as view engine
-require('dotenv').config({silent: true}); // Read values from .env file
+require('dotenv').config({silent: true, path: "./hellosign.env"}); // Read values from .env file
 const PORT = 3000;
 
-const github = require('./github.js');
 const hellosign = require('./hellosign.js');
-const session = require('express-session'); // Session management
-// Session initialization
-// Uses local storage, for testing purposes only
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
-}));
 
 app.set('view engine', 'hbs');
 app.use(logger('dev'));
@@ -22,30 +13,32 @@ app.use(logger('dev'));
 // Starts server
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}!`));
 
-// CLA signature page
-app.get('/cla', async (req,res)=>{
+// sectionSelection
+app.get('/sectionSelection', async (req,res)=>{
+  res.render("sectionSelection");
+});
 
-  if(!req.session.email){
-    github.authorize(req,res);
-  }else{
-
-    let embed_url;
-    try{
-      embed_url = await hellosign.getEmbedURL(req.session.email,req.session.github_username);
-    }catch(error){
+// signature page
+app.get('/signature', async (req,res)=>{
+    let result, embed_url, sign_id;
+    try
+    {
+      // Extract the email & name from the current user session or MongoDB
+      result = await hellosign.getEmbedURL("inspector@gmail.com", "John Smith");
+      embed_url=result[0];
+      sign_id=result[1]
+    }
+    catch(error)
+    {
       console.log(error);
       res.status(500);
       return res.send("<h2>An error ocurred with HelloSign</h2>");
     }
-
     let args = {
       layout: false,
       hellosign_client_id: process.env.HELLOSIGN_CLIENT_ID,
       embed_url: embed_url,
+      sign_id: sign_id
     };
-    res.render("index", args);
-  }
+    res.render("signature", args);
 });
-
-// GitHub OAuth callback
-app.get('/auth', github.auth);

@@ -24,13 +24,14 @@ dataRoutes.route("/document/addDoc").post(function (req, response) {
         basicInformation : req.body.basicInformation,
         highRisk : req.body.highRisk,
         lowRisk : req.body.lowRisk,
+        signatureRequestData : req.body.signatureRequestData,
     };
 
     db_connect.collection("records").insertOne(myobj, function (err, res) {
         if (err) throw err;
         var temp = {documents : res.insertedId};
 
-        let myquery = { _id: ObjectId("62fed42263c2656a17e3f0cb") };
+        let myquery = { _id: ObjectId(req.body.userId) };
         let db_user = dbo.getDb();
 
         let newData =  { $push: temp};

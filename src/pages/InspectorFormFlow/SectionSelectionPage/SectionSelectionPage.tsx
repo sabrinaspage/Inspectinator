@@ -7,6 +7,8 @@ import {
 } from "./consts";
 import { InspectorFormContext } from "../../../contexts/InspectorFormContext";
 import "./SectionSelectionPage.css";
+import { Pill } from "../../../recycleComps/Pill";
+
 import { AuthContext } from "../../../contexts/AuthContext";
 
 const Section = ({
@@ -19,29 +21,9 @@ const Section = ({
 }: InspectorFormSection) => {
   const sectionStatus =
     status === SectionStatus.NOT_STARTED ? (
-      <div
-        style={{
-          borderRadius: "30px",
-          backgroundColor: "#FEF3F2",
-        }}
-        className="py-1 px-3 ms-2"
-      >
-        <p style={{ color: "#F04438", fontWeight: "500" }} className="m-0">
-          <small>Not Started</small>
-        </p>
-      </div>
+      <Pill title="Not Started" color="#FEF3F2" textColor="#F04438" />
     ) : (
-      <div
-        style={{
-          borderRadius: "30px",
-          backgroundColor: "#ECFDF3",
-        }}
-        className="py-1 px-3 ms-2"
-      >
-        <p style={{ color: "#12B76A", fontWeight: "500" }} className="m-0">
-          <small>Saved</small>
-        </p>
-      </div>
+      <Pill title="Saved" color="#ECFDF3" textColor="#12B76A" />
     );
 
   return (
@@ -54,14 +36,14 @@ const Section = ({
           data-bs-target={`#${collapseId}`}
           aria-expanded="false"
           aria-controls={collapseId}
-          style={{ height: "100px" }}
+          style={{ height: "115px" }}
         >
           {title} {sectionStatus}
         </button>
       </h2>
       <div
         id={collapseId}
-        className="accordion-collapse collapse my-3"
+        className="accordion-collapse collapse"
         aria-labelledby={headingId}
         data-bs-parent="#accordionFlushExample"
         style={{ height: "100px" }}
@@ -79,14 +61,12 @@ const Section = ({
               </button>
             </Link>
           ) : (
-            <Link to={url}>
-              <button
-                style={{ borderRadius: "8px" }}
-                className="btn p-2 w-25 btn-dark bg-dark"
-              >
-                Update
-              </button>
-            </Link>
+            <button
+              style={{ borderRadius: "8px" }}
+              className="btn p-2 w-100 btn-dark bg-dark"
+            >
+              Update
+            </button>
           )}
         </div>
       </div>
@@ -101,15 +81,29 @@ export default function SectionSelectionPage() {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
-    console.log(inspector.initialForm);
+    console.log(auth.basicInformation);
+    console.log(auth.highRiskAnswers);  
   }, [inspector]);
 
   async function saveDocument() {
+
+    const data = {
+      requestId : "",
+      signOneId : "",
+      signTwoId : "",
+      statusOne : "",
+      statusTwo : "",
+    }
+
     const documentInfo = { 
       basicInformation : auth.basicInformation,
       highRisk : auth.highRiskAnswers,
       lowRisk : auth.lowRiskAnswers,
+      signatureRequestData : data,
+      userId : auth.userId
     };
+
+    console.log(documentInfo);
  
     await fetch("http://localhost:5000/document/addDoc", {
         method: "POST",
@@ -129,6 +123,7 @@ export default function SectionSelectionPage() {
         return Promise.reject(error);
       } else {
         console.log(response);
+        window.alert("Document saved successfully!");
       }
     })
     .catch(error => {
@@ -137,7 +132,7 @@ export default function SectionSelectionPage() {
   }
 
   return (
-    <div className = "w-100 mb-5 pb-4 mt-4">
+    <div className="w-100 mb-5 pb-4">
       <div className="mt-5 container">
         <div className="row px-2">
           <div className="col-md-10">
@@ -152,7 +147,7 @@ export default function SectionSelectionPage() {
             ))}
           </div>
         </div>
-        <div className="row px-2 mt-5 pt-4">
+        <div className="row px-2 pt-3">
           <div className="d-flex align-items-start col-md-2">
             <h1 className="w-100">
               <button
@@ -172,7 +167,7 @@ export default function SectionSelectionPage() {
                 style={{ borderRadius: "8px" }}
                 className="btn p-2 w-100 btn-dark bg-dark"
               >
-                Review your Form
+                Review and Sign
               </button>
             </h1>
           </div>
