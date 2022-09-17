@@ -55,16 +55,6 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
         "Low Risk Factors are preventive measures to control the addition of pathogens, chemicals, and physical objects into foods.",
       url: UrlsForForm.lowRiskSection,
     },
-    {
-      id: "",
-      headingId: "flush-headingFour",
-      collapseId: "flush-collapseFour",
-      status: SectionStatus.NOT_STARTED,
-      title: "Esignature",
-      description:
-        "The person in charge and health regulatory authority will sign the form.",
-      url: "/esign",
-    },
   ];
 }
 

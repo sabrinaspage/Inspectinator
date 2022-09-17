@@ -1,6 +1,6 @@
 
 import { useContext, useRef, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import './SignInPage.css';
@@ -41,6 +41,7 @@ export default function SignInPage() {
         
         auth.setUserData(records[0]['name'], records[0]['_id'])
         auth.setLoggedIn(true);
+        auth.setDocuments(records[0]['documents']);
 
         window.alert("Login successful");
 

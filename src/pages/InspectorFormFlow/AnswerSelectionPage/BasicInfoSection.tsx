@@ -90,8 +90,8 @@ export const BasicInfoSection = () => {
         phoneNumber: phoneNumber
       };
       auth.setBasicInformation([info]);
+      navigate("../sectionSelection");
     }
-    navigate("../sectionSelection");
   }
 
 
@@ -160,8 +160,11 @@ export const BasicInfoSection = () => {
           <div className="form-group col-md-1">
             <label htmlFor="inputState">State</label>
             <select id="inputState" className="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
+              <option>Choose...</option>
+              <option>NY</option>
+              <option>CA</option>
+              <option>NJ</option>
+              <option>PA</option>
             </select>
           </div>
           <div className="form-group col-md-2">

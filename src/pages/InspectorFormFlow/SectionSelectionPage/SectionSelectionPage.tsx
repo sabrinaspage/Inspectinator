@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import {
   InspectorFormSection,
   inspectorFormSections,
@@ -95,6 +95,11 @@ export default function SectionSelectionPage() {
       statusTwo : "",
     }
 
+    if (auth.basicInformation.length == 0) {
+      alert("Please fill out basic information");
+      return;
+    }
+
     const documentInfo = { 
       basicInformation : auth.basicInformation,
       highRisk : auth.highRiskAnswers,
@@ -123,12 +128,15 @@ export default function SectionSelectionPage() {
         return Promise.reject(error);
       } else {
         console.log(response);
-        window.alert("Document saved successfully!");
+        
       }
     })
     .catch(error => {
         console.error('There was an error!', error);
+        return;
     });
+    alert("Document saved successfully!");
+    navigate("/dashboard");
   }
 
   return (

@@ -25,6 +25,7 @@ dataRoutes.route("/document/addDoc").post(function (req, response) {
         highRisk : req.body.highRisk,
         lowRisk : req.body.lowRisk,
         signatureRequestData : req.body.signatureRequestData,
+        createdDate : new Date(),
     };
 
     db_connect.collection("records").insertOne(myobj, function (err, res) {
@@ -45,6 +46,19 @@ dataRoutes.route("/document/addDoc").post(function (req, response) {
         });
     });
 });
+
+
+dataRoutes.route("/document/basicData/:documentId").get(function (req, res) {
+    let db_connect = dbo.getDocumentDb();
+    db_connect
+    .collection("records")
+    .find({_id: ObjectId(req.params.documentId)})
+    .toArray(function (err, result) {
+        if (err) throw err;
+        res.json([result[0].basicInformation, result[0].createdDate]);
+    });
+});
+
  
 // This section will help you get a list of all the records.
 // recordRoutes.route("/record").get(function (req, res) {

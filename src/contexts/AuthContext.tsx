@@ -31,6 +31,8 @@ const useAuth = () => {
   const [highRiskAnswers, setHighRiskAnswers] = useState<Data[]>([]);
   const [basicInformation, setBasicInformation] = useState<BasicInfo[]>([]);
 
+  const [documents, setDocuments] = useState<any[]>([]);
+
   function setUserData(name: string, id: string) {
     setUserName(name);
     setUserId(id);
@@ -48,6 +50,8 @@ const useAuth = () => {
     setUserData,
     basicInformation,
     setBasicInformation,
+    documents,
+    setDocuments
   };
 };
 

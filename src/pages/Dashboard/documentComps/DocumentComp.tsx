@@ -13,9 +13,10 @@ export interface DocumentSection {
     documentstatus: DocumentStatus;
     createdDate: string;
     restaurantName: string;
+    address: string;
 }
 
-export default function DocumentComp({filename, documentstatus, createdDate, restaurantName} : DocumentSection) {
+export default function DocumentComp({filename, documentstatus, createdDate, restaurantName, address} : DocumentSection) {
     var index = 1;
     return (
         <div>
@@ -29,7 +30,7 @@ export default function DocumentComp({filename, documentstatus, createdDate, res
                     {filename}
                     </p>
                     <p className="m-0 text-secondary">
-                    <small>{restaurantName}</small>
+                    <small>{restaurantName} - {address}</small> 
                     </p>
                 </div>
                 <div className="d-flex align-items-center col-lg-2">

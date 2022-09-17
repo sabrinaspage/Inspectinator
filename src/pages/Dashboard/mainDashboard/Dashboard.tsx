@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import DocumentComp from "../documentComps/DocumentComp";
 
 import { DocumentStatus } from "../documentComps/DocumentComp";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect, SetStateAction } from "react";
+
+import { AuthContext } from '../../../contexts/AuthContext';
 
 function run(a: number) {
   if (a % 3 === 0) {
@@ -19,24 +21,42 @@ function run(a: number) {
 
 export default function Dashboard() {
 
-  var documents = [
-    {
-      "name" : "Inspection_report_name",
-      "restaurant" : "Dominos"
-    },
-    {
-      "name" : "Random_name",
-      "restaurant" : "Pizza hut"
-    },
-    {
-      "name" : "Recipt_from_yesterday",
-      "restaurant" : "McDonalds"
-    },
-    {
-      "name" : "Times Square Inspection",
-      "restaurant" : "Burger King"
-    }
+  const auth = useContext(AuthContext);
+
+  var documents: any[] = [
   ];
+
+  const [changed, setchanged] = useState(true);
+
+  useEffect(() => {
+    if (changed === true) {
+      setchanged(!changed);
+      fetchData();
+    }
+    console.log(documents);
+    console.log(changed);
+    setFilteredDocuments(documents);
+  }, [changed]);
+
+  const fetchData = async () => {
+    for (let i = 0; i < auth.documents.length; i++) {
+      const response = await fetch('http://localhost:5000/document/basicData/' + auth.documents[i], {
+        method: "GET",
+      });
+      const records = await response.json();
+      let businessData = records[0][0];
+      let date = new Date(records[1]);
+
+      var temp = {
+        "name" : businessData.businessName,
+        "restaurant" : businessData.operator,
+        "date" : date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear(),
+        "address" : businessData.address + ", " + businessData.city + ", " + businessData.zipCode,
+      }
+      documents.push(temp);
+    }
+    setFilteredDocuments(documents);
+  } 
 
   const [filteredDocuments, setFilteredDocuments] = useState(documents);
 
@@ -130,7 +150,7 @@ export default function Dashboard() {
           <div className="mt-5">
             {filteredDocuments.map((value, index) => (
                 <DocumentComp filename={value.name} restaurantName={value.restaurant}
-                  createdDate="12-01-2022" documentstatus={run(index)}/>  
+                  createdDate={value.date} address={value.address} documentstatus={run(index)}/>  
               )
             )}
           </div>

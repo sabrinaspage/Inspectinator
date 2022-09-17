@@ -50,7 +50,6 @@ export default function MainCompenent() {
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/sectionSelection" element={<SectionSelectionPage />} />
         <Route path="/esign" element={<EsignaturePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path={UrlsForForm.basicInfoSection} element={<AnswerSelectionPage />} />
         <Route
           path={UrlsForForm.highRiskSection}
