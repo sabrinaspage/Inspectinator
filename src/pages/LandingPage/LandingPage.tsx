@@ -6,9 +6,9 @@ export default function LandingPage() {
     <div className='my-5 py-5'>
 
       <div className="d-flex justify-content-center align-items-center flex-column mb-5 mt-3">
-        <h1 className='fw-bold display-7 text-center'>Inspectors deserve better. Modernize your inspection workflow.</h1>
+        <h1 className='fw-bold display-7 mb-4 text-center'>Inspectors deserve better.<br/> Modernize your inspection workflow.</h1>
 
-        <p className='text-secondary w-50 text-center my-3'>
+        <p className="lead w-50 text-center mb-3">
           Work at your convenience by accessing inspection forms across your devices.
           Stay confident knowing secure e-signatures protect your inspection process 
           from fraudulent activity. 
@@ -17,7 +17,7 @@ export default function LandingPage() {
         <Button className="mt-4 py-2 px-3 mb-3">Sign up - it's free!</Button>
       </div>
 
-      <Card.Img className = "p-0 m-0" variant="top" src="https://fakeimg.pl/800x250/?text=PDF"/>
+      <Card.Img className = "p-0 m-0" variant="top" src="/images/landing_pg/devices.png"/>
 
       <div className = "mx-5 px-5 mb-5 mt-0 pb-4 pt-0 mt-0">
         <hr className='mx-5 px-5' style = {{borderColor: "#a3a3a3"}} />
@@ -28,7 +28,7 @@ export default function LandingPage() {
         
         <h2 className = "mt-1 mb-4">Inspectinator prioritizes simplicity. Stay neat and organized.</h2>
 
-        <p className='text-secondary w-50 text-center mb-5'>
+        <p className='lead w-50 text-center mb-5'>
           Let's face it, paperwork can get messy. Papers can get damaged or even misplaced.
           By securing all file uploads to the cloud, we guarantee that all your valuable 
           documents will stay in one place right where you left off.
@@ -38,23 +38,30 @@ export default function LandingPage() {
       <div className='container-fluid m-0 p-0 row w-100'>
         <div className = "col-lg-6 px-4 d-flex align-items-center">
           <div>
-            <h4 className='fw-bold mb-4'>Form Flow</h4>
-            <p className = "text-muted">Easily navigate form sections, stay updated on progress, and receive feedback.</p>
+            <h3 className='fw-bold mb-4 text-center'>Form Flow</h3>
+            <p className = "lead text-center">
+              Easily navigate form sections, stay updated on progress, and receive feedback.
+              Attach notes to responses.
+            </p>
           </div>
         </div>
         <div className = "col-lg-6 px-4">
-          <Card.Img variant="top" src="https://fakeimg.pl/700x420/?text=PDF"/>
+          <Card.Img variant="top" src="/images/landing_pg/form_flow.png"/>
         </div>
       </div>
 
       <div className='container-fluid m-0 p-0 row w-100 my-5 py-3'>
         <div className = "col-lg-6 px-4">
-          <Card.Img variant="top" src="https://fakeimg.pl/700x420/?text=PDF"/>
+          <Card.Img variant="top" src="/images/landing_pg/record.png"/>
         </div>
         <div className = "col-lg-6 px-4 d-flex align-items-center">
           <div>
-            <h4 className='fw-bold mb-4'>Record Keeping</h4>
-            <p className = "text-muted">Archived forms maintain a history of all your previous inspections.</p>
+            <h3 className='fw-bold mb-4 text-center'>Record Keeping</h3>
+            <p className = "lead text-center">
+              Archived forms maintain a history of all your previous inspections
+              through read-only documents. Past form responses and signature 
+              meta-data conveniently stored in one place.
+            </p>
           </div>
         </div>
       </div>
@@ -62,12 +69,12 @@ export default function LandingPage() {
       <div className='container-fluid m-0 p-0 row w-100'>
         <div className = "col-lg-6 px-4 d-flex align-items-center">
           <div>
-            <h4 className='fw-bold mb-4'>Customizability</h4>
-            <p className = "text-muted">Create new form fields or even entirely new sections. Design as you see fit.</p>
+            <h3 className='fw-bold mb-4 text-center'>Customizability</h3>
+            <p className = "lead text-center">Create new form fields or even entirely new sections. Design as you see fit.</p>
           </div>
         </div>
         <div className = "col-lg-6 px-4">
-          <Card.Img variant="top" src="https://fakeimg.pl/700x420/?text=PDF"/>
+          <Card.Img variant="top" src="/images/landing_pg/custom.png"/>
         </div>
       </div>
 
