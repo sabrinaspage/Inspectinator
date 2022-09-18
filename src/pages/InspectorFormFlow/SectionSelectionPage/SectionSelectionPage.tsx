@@ -95,8 +95,18 @@ export default function SectionSelectionPage() {
       statusTwo : "",
     }
 
-    if (auth.basicInformation.length == 0) {
+    if (auth.basicInformation.length === 0) {
       alert("Please fill out basic information");
+      return;
+    }
+
+    if (auth.highRiskAnswers.length === 0) {
+      alert("Please fill out the high risk section");
+      return;
+    }
+
+    if (auth.lowRiskAnswers.length === 0) {
+      alert("Please fill out the low risk section");
       return;
     }
 
@@ -136,6 +146,32 @@ export default function SectionSelectionPage() {
         return;
     });
     alert("Document saved successfully!");
+
+    await fetch("http://localhost:5000/auth/getDocuments/" + auth.userEmail, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    .then(async response => {
+      const isJson = response.headers.get('content-type')?.includes('application/json');
+      const data = isJson && await response.json();
+
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response status
+        const error = (data && data.message) || response.status;
+        return Promise.reject(error);
+      } else {
+        console.log(response);
+        auth.setDocuments(data);
+      }
+    })
+    .catch(error => {
+        console.error('There was an error!', error);
+        return;
+    });
+
     navigate("/dashboard");
   }
 

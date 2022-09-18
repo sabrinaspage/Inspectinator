@@ -1,5 +1,5 @@
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useContext, useEffect, useState } from 'react';
 import { Accordion } from "react-bootstrap";
 
@@ -13,6 +13,8 @@ import {
 
 
 export default function DocumentPreview() {
+
+    const navigate = useNavigate();
 
     const { documentId } = useParams();
 
@@ -317,6 +319,19 @@ export default function DocumentPreview() {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                
+                <div className="mt-5 d-flex align-items-start col-md-2">
+                    <h1 className="w-100">
+                    <button
+                        onClick={() => navigate("/dashboard")}
+                        style={{ borderRadius: "8px" }}
+                        className="btn p-2 w-100 btn-light bg-light border border-secondary"
+                    >
+                        Go Back
+                    </button>
+                    </h1>
                 </div>
 
             </div>

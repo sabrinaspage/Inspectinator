@@ -43,6 +43,19 @@ recordRoutes.route("/auth/addUser").post(function (req, response) {
         response.json(res);
     });
 });
+
+// This section will help you get a list of all the records.
+recordRoutes.route("/auth/getDocuments/:email").get(function (req, res) {
+    let db_connect = dbo.getDb();
+    db_connect
+    .collection("User_Data")
+    .find({email: req.params.email})
+    .toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result[0]['documents']);
+    });
+});
+
  
 // // This section will help you get a single record by id
 // recordRoutes.route("/record/:id").get(function (req, res) {
