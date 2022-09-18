@@ -25,6 +25,7 @@ const useAuth = () => {
 
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
 
   const [lowRiskAnswers, setLowRiskAnswers] = useState<Data[]>([]);
@@ -51,7 +52,9 @@ const useAuth = () => {
     basicInformation,
     setBasicInformation,
     documents,
-    setDocuments
+    setDocuments,
+    userEmail,
+    setUserEmail
   };
 };
 

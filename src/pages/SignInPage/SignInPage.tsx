@@ -42,6 +42,7 @@ export default function SignInPage() {
         auth.setUserData(records[0]['name'], records[0]['_id'])
         auth.setLoggedIn(true);
         auth.setDocuments(records[0]['documents']);
+        auth.setUserEmail(records[0]['email']);
 
         window.alert("Login successful");
 

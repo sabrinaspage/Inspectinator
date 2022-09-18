@@ -23,22 +23,21 @@ export default function Dashboard() {
 
   const auth = useContext(AuthContext);
 
-  var documents: any[] = [
-  ];
-
   const [changed, setchanged] = useState(true);
 
   useEffect(() => {
+    if (auth.documents.length === documents.length) {
+      setchanged(true);
+    }
     if (changed === true) {
       setchanged(!changed);
       fetchData();
     }
-    console.log(documents);
-    console.log(changed);
-    setFilteredDocuments(documents);
-  }, [changed]);
+    setFilteredDocuments([]);
+  }, [auth.documents, changed]);
 
   const fetchData = async () => {
+    var documents = [];
     for (let i = 0; i < auth.documents.length; i++) {
       const response = await fetch('http://localhost:5000/document/basicData/' + auth.documents[i], {
         method: "GET",
@@ -52,13 +51,16 @@ export default function Dashboard() {
         "restaurant" : businessData.operator,
         "date" : date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear(),
         "address" : businessData.address + ", " + businessData.city + ", " + businessData.zipCode,
+        "id" : auth.documents[i],
       }
       documents.push(temp);
     }
     setFilteredDocuments(documents);
+    setDocuments(documents);
   } 
 
-  const [filteredDocuments, setFilteredDocuments] = useState(documents);
+  const [filteredDocuments, setFilteredDocuments] = useState<any[]>([]);
+  const [documents, setDocuments] = useState<any[]>([]);
 
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -150,7 +152,7 @@ export default function Dashboard() {
           <div className="mt-5">
             {filteredDocuments.map((value, index) => (
                 <DocumentComp filename={value.name} restaurantName={value.restaurant}
-                  createdDate={value.date} address={value.address} documentstatus={run(index)}/>  
+                  createdDate={value.date} id={value.id} address={value.address} documentstatus={run(index)}/>  
               )
             )}
           </div>

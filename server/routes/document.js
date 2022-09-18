@@ -59,6 +59,17 @@ dataRoutes.route("/document/basicData/:documentId").get(function (req, res) {
     });
 });
 
+dataRoutes.route("/document/data/:documentId").get(function (req, res) {
+    let db_connect = dbo.getDocumentDb();
+    db_connect
+    .collection("records")
+    .find({_id: ObjectId(req.params.documentId)})
+    .toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
  
 // This section will help you get a list of all the records.
 // recordRoutes.route("/record").get(function (req, res) {

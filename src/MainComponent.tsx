@@ -9,6 +9,8 @@ import SectionSelectionPage from "./pages/InspectorFormFlow/SectionSelectionPage
 import AnswerSelectionPage from "./pages/InspectorFormFlow/AnswerSelectionPage/AnswerSelectionPage";
 import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
 import Dashboard from "./pages/Dashboard/mainDashboard/Dashboard";
+import DocumentPreview from "./pages/Dashboard/documentPreview/DocumentPreview";
+
 import { useState, useEffect, useContext } from "react";
 
 import { AuthContext } from "./contexts/AuthContext";
@@ -60,6 +62,7 @@ export default function MainCompenent() {
           element={<AnswerSelectionPage />}
         />
         {auth.loggedIn && <Route path="/dashboard" element={<Dashboard />} />}
+        {auth.loggedIn && <Route path="/document/:documentId" element={<DocumentPreview />} />}
       </Routes>
     </div>
   );
