@@ -20,7 +20,7 @@ app.get('/sectionSelection', async (req,res)=>{
 let bodyparser=require("body-parser");
 let jsonParser=bodyparser.json();
 let basic_info= {
-  // Lets pretend this is the data extrcated from the current Inspectinator user session
+  // Lets pretend this is the data extracated from the current Inspectinator user session
   inspector: {
     email: "michaelsalamon78@gmail.com",
     name: "Michael Salamon"
