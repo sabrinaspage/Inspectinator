@@ -3,6 +3,7 @@ import { Route, Routes} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SectionSelectionPage from "./pages/InspectorFormFlow/SectionSelectionPage/SectionSelectionPage";
 import EsignaturePage from "./pages/InspectorFormFlow/EsignaturePage/EsignaturePage";
+import Dashboard from "./pages/Dashboard/mainDashboard/Dashboard";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/sectionSelection" element={<SectionSelectionPage />} />
           <Route path="/esign" element={<EsignaturePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </div>
