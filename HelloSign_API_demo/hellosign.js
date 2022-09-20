@@ -72,6 +72,7 @@ const send_Esigns = async (basic_info)=>{
  * @param {string} request_id - request_id
  * @param {string} sign_1 - inspector signature_id
  * @param {string} sign_2 - client signature_id
+ * @return {json} updated status(es)
  */
 const check_Esigns = async (request_id, sign_1, sign_2)=>{
   let response = await hellosign.signatureRequest.get(request_id);
@@ -97,6 +98,7 @@ const check_Esigns = async (request_id, sign_1, sign_2)=>{
     }
   }
   console.log(result);
+  return result;
 }
 
 module.exports = {
