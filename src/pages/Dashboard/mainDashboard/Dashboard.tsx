@@ -27,11 +27,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (auth.documents.length === documents.length) {
-      setchanged(true);
+      setchanged(false);
     }
     if (changed === true) {
-      setchanged(!changed);
       fetchData();
+      setchanged(true);
     }
     setFilteredDocuments([]);
   }, [auth.documents, changed]);
@@ -45,6 +45,14 @@ export default function Dashboard() {
       const records = await response.json();
       let businessData = records[0][0];
       let date = new Date(records[1]);
+      var eSignData = records[2];
+    
+      var curr = 0;
+      if (eSignData.inspector.status === "Complete." && eSignData.client.status === "Complete.") {
+        curr = 1;
+      } else if (eSignData.inspector.status === "Complete." || eSignData.client.status === "Complete."){
+        curr = 2;
+      }
 
       var temp = {
         "name" : businessData.businessName,
@@ -52,6 +60,7 @@ export default function Dashboard() {
         "date" : date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear(),
         "address" : businessData.address + ", " + businessData.city + ", " + businessData.zipCode,
         "id" : auth.documents[i],
+        "status" : curr
       }
       documents.push(temp);
     }
@@ -152,7 +161,7 @@ export default function Dashboard() {
           <div className="mt-5">
             {filteredDocuments.map((value, index) => (
                 <DocumentComp filename={value.name} restaurantName={value.restaurant}
-                  createdDate={value.date} id={value.id} address={value.address} documentstatus={run(index)}/>  
+                  createdDate={value.date} id={value.id} address={value.address} documentstatus={run(value.status)}/>  
               )
             )}
           </div>

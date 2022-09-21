@@ -87,14 +87,6 @@ export default function SectionSelectionPage() {
 
   async function saveDocument() {
 
-    const data = {
-      requestId : "",
-      signOneId : "",
-      signTwoId : "",
-      statusOne : "",
-      statusTwo : "",
-    }
-
     if (auth.basicInformation.length === 0) {
       alert("Please fill out basic information");
       return;
@@ -109,16 +101,57 @@ export default function SectionSelectionPage() {
       alert("Please fill out the low risk section");
       return;
     }
+    
+    let signData = {};
+
+    // Hello Sign API Stuff
+    const param = {
+      basic_info: {
+        inspector: {
+          email: auth.userEmail,
+          name: auth.userName
+        },
+        client: {
+          email: auth.basicInformation[0].businessName,
+          name: auth.basicInformation[0].operator
+        }
+      }
+    }
+    await fetch("http://localhost:5000/helloSign/sendEsigns", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(param),
+    })
+    .then(async response => {
+      const isJson = response.headers.get('content-type')?.includes('application/json');
+      const data = isJson && await response.json();
+
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response status
+        const error = (data && data.message) || response.status;
+        return Promise.reject(error);
+      } else {
+        console.log(data);
+        signData = data;
+      }
+    })
+    .catch(error => {
+        console.error('There was an error!', error);
+        return;
+    });
+
+
 
     const documentInfo = { 
       basicInformation : auth.basicInformation,
       highRisk : auth.highRiskAnswers,
       lowRisk : auth.lowRiskAnswers,
-      signatureRequestData : data,
+      signatureRequestData : signData,
       userId : auth.userId
     };
-
-    console.log(documentInfo);
  
     await fetch("http://localhost:5000/document/addDoc", {
         method: "POST",

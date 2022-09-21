@@ -243,7 +243,7 @@ export default function DocumentPreview() {
                         <div className='box'>
                             <div>
                                 <p className="m-0 text-primary fw-bold">{auth.userEmail}</p>
-                                {data[0].signatureRequestData.statusOne === "Complete" && 
+                                {data[0].signatureRequestData.inspector.status === "Complete." && 
                                     <div
                                         style={{
                                         borderRadius: "30px",
@@ -261,7 +261,7 @@ export default function DocumentPreview() {
                                     </div>
                                 }
                                 {
-                                    data[0].signatureRequestData.statusOne === "" &&
+                                    data[0].signatureRequestData.inspector.status === "Incomplete." &&
                                     <div
                                         style={{
                                         borderRadius: "30px",
@@ -281,7 +281,7 @@ export default function DocumentPreview() {
                             </div>
                             <div>
                                 <p className="m-0 text-primary fw-bold">{data[0].basicInformation[0].businessName}</p>
-                                {data[0].signatureRequestData.statusTwo === "Complete" && 
+                                {data[0].signatureRequestData.client.status === "Complete." && 
                                     <div
                                         style={{
                                         borderRadius: "30px",
@@ -299,7 +299,7 @@ export default function DocumentPreview() {
                                     </div>
                                 }
                                 {
-                                    data[0].signatureRequestData.statusTwo === "" &&
+                                    data[0].signatureRequestData.client.status === "Incomplete." &&
                                     <div
                                         style={{
                                         borderRadius: "30px",

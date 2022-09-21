@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(require("./routes/auth"));
 
 app.use(require("./routes/document"));
+
+app.use(require("./routes/helloSign"));
+
 // get driver connection
 const dbo = require("./db/conn");
  

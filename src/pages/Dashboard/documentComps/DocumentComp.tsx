@@ -52,7 +52,7 @@ export default function DocumentComp({filename, documentstatus, createdDate, res
                             style={{ color: "#F04438", fontWeight: "500" }}
                             className="m-0"
                             >
-                            <small>{documentstatus}</small>
+                            <small>In Progress</small>
                             </p>
                         </div>
                         )}
@@ -68,7 +68,7 @@ export default function DocumentComp({filename, documentstatus, createdDate, res
                             style={{ color: "#12B76A", fontWeight: "500" }}
                             className="m-0"
                             >
-                            <small>{documentstatus}</small>
+                            <small>Signed</small>
                             </p>
                         </div>
                         )}
@@ -84,7 +84,7 @@ export default function DocumentComp({filename, documentstatus, createdDate, res
                             style={{ color: "#667085", fontWeight: "500" }}
                             className="m-0"
                             >
-                            <small>{documentstatus}</small>
+                            <small>Started</small>
                             </p>
                         </div>
                         )}

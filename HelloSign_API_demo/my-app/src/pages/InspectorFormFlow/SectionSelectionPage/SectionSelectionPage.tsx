@@ -6,8 +6,7 @@ export default function SectionSelectionPage() {
   const navigate = useNavigate();
   const [sent, isSent] = useState(false);
 
-  function submitData()
-  {
+  function submitData() {
     fetch("http://localhost:4000/sectionSelection", {
       method: "POST",
       headers: {
@@ -16,7 +15,7 @@ export default function SectionSelectionPage() {
       },
       body: JSON.stringify({
         // inspector
-        email1: "michaelsalamon78@gmail.com",// CHANGE THIS!
+        email1: "nishanth.prajith@gmail.com",// CHANGE THIS!
         name1: "Michael Salamon",// CHANGE THIS!
         // client
         email2: "michael37_37@outlook.com",// CHANGE THIS!

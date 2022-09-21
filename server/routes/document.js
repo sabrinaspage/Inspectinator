@@ -1,5 +1,7 @@
 const express = require("express");
 
+const hellosign = require("hellosign-sdk")({ key: process.env.HELLOSIGN_API_KEY });
+
 var http = require('http');
  
 // recordRoutes is an instance of the express router.
@@ -48,14 +50,61 @@ dataRoutes.route("/document/addDoc").post(function (req, response) {
 });
 
 
-dataRoutes.route("/document/basicData/:documentId").get(function (req, res) {
+dataRoutes.route("/document/basicData/:documentId").get(async function (req, res) {
     let db_connect = dbo.getDocumentDb();
+
+    let myquery = { _id: ObjectId(req.params.documentId) };
+
+    var eSign;
     db_connect
     .collection("records")
-    .find({_id: ObjectId(req.params.documentId)})
-    .toArray(function (err, result) {
+    .find(myquery)
+    .toArray(async function (err, result) {
         if (err) throw err;
-        res.json([result[0].basicInformation, result[0].createdDate]);
+        console.log("-----------------");
+        console.log(result);
+        console.log("-----------------");
+
+        eSign = result[0].signatureRequestData;
+
+        let response = await hellosign.signatureRequest.get(eSign.request_id);
+        let data = {
+            request_id : eSign.request_id,
+            inspector: {
+                sign_id: eSign.inspector.sign_id,
+                status: "Incomplete."
+            },
+            client: {
+                sign_id: eSign.client.sign_id,
+                status: "Incomplete."
+            }
+        }
+
+        let current = response.signature_request.response_data;
+        for(var i=0; i<current.length; i++) {
+            if(current[i].type==="signature") {
+                if(current[i].signature_id === eSign.inspector.sign_id) {
+                    data.inspector.status = "Complete.";
+                } else if(current[i].signature_id === eSign.client.sign_id) {
+                    data.client.status = "Complete.";
+                }
+            }
+        }
+        
+        console.log(data);
+
+        var temp = {signatureRequestData : data };;
+
+        let newData =  { $set: temp};
+
+        db_connect.collection("records").updateOne(
+        myquery,
+        newData, 
+        function (err, resss) {
+            if (err) throw err;
+        });
+        
+        res.json([result[0].basicInformation, result[0].createdDate, data]); 
     });
 });
 
