@@ -2,8 +2,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import InspectorFormProvider from "./contexts/InspectorFormContext";
-
 import Navbar from "./recycleComps/NavBarComp/NavBar";
+import TopNavBar from "./recycleComps/TopNavBar";
 import MainCompenent from "./MainComponent";
 import Footer from "./recycleComps/footerComps/Footer";
 import AuthContextProvider from "./contexts/AuthContext";
@@ -16,7 +16,7 @@ function App() {
       <AuthContextProvider>
         <InspectorFormProvider>
           <Router>
-            <Navbar />
+            <TopNavBar />
             <MainCompenent />
             <Footer />
           </Router>
