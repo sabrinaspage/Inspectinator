@@ -66,6 +66,7 @@ dataRoutes.route("/document/basicData/:documentId").get(async function (req, res
         console.log("-----------------");
 
         eSign = result[0].signatureRequestData;
+        console.log(eSign);
 
         let response = await hellosign.signatureRequest.get(eSign.request_id);
         let data = {

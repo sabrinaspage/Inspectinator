@@ -2,6 +2,8 @@ import { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
+import * as sjcl from 'sjcl';
+
 import "./SignInPage.css";
 
 export default function SignInPage() {
@@ -35,7 +37,12 @@ export default function SignInPage() {
       setErrorMessage("Invalid email or password");
       return;
     }
-    if (records[0].password !== password) {
+
+    const myString = password;
+    const myBitArray = sjcl.hash.sha256.hash(myString);
+    const myHash = sjcl.codec.hex.fromBits(myBitArray);
+
+    if (records[0].password !== myHash) {
       setErrorMessage("Invalid password");
       return;
     }

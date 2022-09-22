@@ -57,7 +57,7 @@ export default function Navbar() {
                                 </Link>
                             </div>
                             <button className='bg-primary btn col-lg-2' style={{borderRadius: "1000px"}} onClick = {signOut}>
-                                <p className='text-white px-3 py-0 m-0'>Sign Out</p>
+                                <p className='text-white px-3 py-2 m-0'>Sign Out</p>
                             </button>
                         </div> 
                     }

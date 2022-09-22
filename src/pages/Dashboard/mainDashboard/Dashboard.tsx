@@ -158,13 +158,21 @@ export default function Dashboard() {
             </div>
           </div>
           <div style={{ height: "1px" }} className="bg-secondary mt-3 mx-2"></div>
-          <div className="mt-5">
-            {filteredDocuments.map((value, index) => (
-                <DocumentComp filename={value.name} restaurantName={value.restaurant}
-                  createdDate={value.date} id={value.id} address={value.address} documentstatus={run(value.status)}/>  
-              )
-            )}
-          </div>
+          {
+            documents.length === 0 ? (
+              <div className="container text-center mt-5 pt-5">
+                <h4 className="text-secondary">No documents found</h4>
+              </div>
+            ) : (
+              <div className="mt-5">
+                {filteredDocuments.map((value, index) => (
+                    <DocumentComp filename={value.name} restaurantName={value.restaurant}
+                      createdDate={value.date} id={value.id} address={value.address} documentstatus={run(value.status)}/>  
+                  )
+                )}
+              </div>
+            )
+          }
         </div>
       </div>
     </div>

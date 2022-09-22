@@ -2,6 +2,8 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import * as sjcl from 'sjcl';
+
 import './SignUpPage.css';
 
 export default function SignUpPage() {
@@ -36,7 +38,11 @@ export default function SignUpPage() {
             return;
         }
 
-        const newPerson = { name: name, email: email, password: password };
+        const myString = password;
+        const myBitArray = sjcl.hash.sha256.hash(myString);
+        const myHash = sjcl.codec.hex.fromBits(myBitArray);
+
+        const newPerson = { name: name, email: email, password: myHash };
  
         await fetch("http://localhost:5000/auth/addUser", {
             method: "POST",
