@@ -1,5 +1,7 @@
 import { Card, Button, CardGroup, ListGroup, Accordion} from 'react-bootstrap';
 
+
+import {Link} from 'react-router-dom';
 export default function LandingPage() {
 
   return (
@@ -14,7 +16,9 @@ export default function LandingPage() {
           from fraudulent activity. 
         </p>
 
-        <Button className="mt-4 py-2 px-3 mb-3">Sign up - it's free!</Button>
+        <Link to='/signin'>
+          <Button className="mt-4 py-2 px-3 mb-3">Sign up - it's free!</Button>
+        </Link>
       </div>
 
       <Card.Img className = "p-0 m-0" variant="top" src="/images/landing_pg/devices.png"/>

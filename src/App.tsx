@@ -16,7 +16,7 @@ function App() {
       <AuthContextProvider>
         <InspectorFormProvider>
           <Router>
-            <TopNavBar />
+            <Navbar />
             <MainCompenent />
             <Footer />
           </Router>

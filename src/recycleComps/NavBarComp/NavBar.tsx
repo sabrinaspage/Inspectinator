@@ -2,6 +2,7 @@
 import {useLocation, Link, useNavigate} from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import Logo from "../nspectinator.png";
 
 export default function Navbar() {
 
@@ -27,17 +28,15 @@ export default function Navbar() {
         auth.setLoggedIn(false);
 
         navigate("../", { replace: true });
-        
     }
 
     return (
-        <div className = "w-100 px-3 navbar mt-2" style={control === 1 ? {position: "absolute", top: "0"} : {}}>
+        <div className = "w-100 px-2 navbar mt-1" style={control === 1 ? {position: "absolute", top: "0"} : {}}>
             <div className = "mx-3 w-100 px-3 floatingEffect" style={{padding: "0.75rem 0"}}>
                 <div className = "row mx-2">
                     <div className='col-lg-6 d-flex align-items-center'>
                         <Link to = {"/"}>
-                            <h3 className="p-0 m-0 fs-4 text-dark">Inspectinator</h3>
-                        
+                            <img src={Logo} style={{ width: "170px" }} />
                         </Link>
                     </div>
                     { (control === 0) && (!auth.loggedIn) &&
@@ -58,7 +57,7 @@ export default function Navbar() {
                                 </Link>
                             </div>
                             <button className='bg-primary btn col-lg-2' style={{borderRadius: "1000px"}} onClick = {signOut}>
-                                <p className='text-white px-3 py-1 m-0'>Sign Out</p>
+                                <p className='text-white px-3 py-0 m-0'>Sign Out</p>
                             </button>
                         </div> 
                     }

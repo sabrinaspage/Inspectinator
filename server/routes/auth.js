@@ -36,6 +36,7 @@ recordRoutes.route("/auth/addUser").post(function (req, response) {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        documents: []
     };
 
     db_connect.collection("User_Data").insertOne(myobj, function (err, res) {
