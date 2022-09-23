@@ -29,7 +29,6 @@ export default function Footer() {
               <Link to="/team">
                 <div className="px-4 text-light">Team</div>
               </Link>
-              <div className="px-4">Contact</div>
             </div>
           </div>
         </div>

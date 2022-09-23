@@ -1,4 +1,5 @@
 import { Card, Accordion } from "react-bootstrap";
+import { FAQ } from "./constants";
 import Inspector from "./Inspector.png";
 export default function LandingPage() {
   return (
@@ -17,12 +18,12 @@ export default function LandingPage() {
             style={{
               width: "800px",
               backgroundImage: "linear-gradient(#149BFC, #BBE2FF)",
-              borderRadius: "0 50% 50% 0",
+              borderRadius: "0 100% 100% 0",
             }}
           >
             <div
               className="text-white"
-              style={{ width: "100%", padding: "180px 150px 200px 100px" }}
+              style={{ width: "100%", padding: "180px 250px 135px 100px" }}
             >
               <h1 className="mb-3">Modernize your inspection workflow.</h1>
               <h4 className="mb-4">
@@ -117,119 +118,25 @@ export default function LandingPage() {
 
       {/*FAQ*/}
       <div className="mx-auto d-flex justify-content-center">
-        <Accordion style={{ width: "52rem", border: "none" }}>
-          <Accordion.Item
-            eventKey="0"
-            className="py-2"
-            style={{
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-            }}
-          >
-            <Accordion.Header as="p">
-              <strong>
-                What's the difference between paperwork and online forms?
-              </strong>
-            </Accordion.Header>
-            <Accordion.Body className="text-muted">
-              For paper forms, you legibly print all form data and get a client
-              signature on-site. For online forms, you can continually update
-              your form fields upon login. When you need a client signature,
-              tell them to register so you can grant access to your forms
-              signature field.
-            </Accordion.Body>
-          </Accordion.Item>
-
-          <Accordion.Item
-            eventKey="1"
-            className="py-2"
-            style={{
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-            }}
-          >
-            <Accordion.Header as="p">
-              <strong>How do e-signatures work?</strong>
-            </Accordion.Header>
-            <Accordion.Body className="text-muted">
-              An e-signature is a protected and legally binding online
-              signature, just like a handwritten signature. Although there are
-              many online services that offer e-signatures, we use HelloSign. As
-              noted on their website, each signature must come from a separate
-              account. If different names were to be signed from a single
-              HelloSign account, it would threaten the integrity of the
-              signatures, and could potentially invalidate a document signed in
-              this manner. To do an e-signature, one only needs to login to
-              their account and type their full name.
-            </Accordion.Body>
-          </Accordion.Item>
-
-          <Accordion.Item
-            eventKey="2"
-            className="py-2"
-            style={{
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-            }}
-          >
-            <Accordion.Header as="p">
-              <strong>
-                What if your system encounters an error and I lose all my data?
-                Can you recover it? Are you liable?
-              </strong>
-            </Accordion.Header>
-            <Accordion.Body className="text-muted">
-              We store all your data in a database on the cloud. In the very
-              unlikely scenario that our database is compromised, we regularly
-              create backups to ensure you still have your data. We are
-              responsible for your data and are liable for any setbacks.
-              Regardless, feel free to download PDF versions of your forms
-              locally on your computer or even print them out. Stay in control
-              of all your data.
-            </Accordion.Body>
-          </Accordion.Item>
-
-          <Accordion.Item
-            eventKey="3"
-            className="py-2"
-            style={{
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-            }}
-          >
-            <Accordion.Header as="p">
-              <strong>
-                I'm both an inspector and a restaurant owner. Can I do a self
-                inspection through the online form?
-              </strong>
-            </Accordion.Header>
-            <Accordion.Body className="text-muted">
-              Yes, just sign-off on both the inspector and client signature
-              fields.
-            </Accordion.Body>
-          </Accordion.Item>
-
-          <Accordion.Item
-            eventKey="4"
-            className="py-2"
-            style={{ border: "none" }}
-          >
-            <Accordion.Header as="p">
-              <strong>
-                I'm not tech-savvy. Should I still give this a shot?
-              </strong>
-            </Accordion.Header>
-            <Accordion.Body className="text-muted">
-              Upon successful registration, you're all set! Build your workspace
-              and fill out your forms. Inspectinator is designed to be very user
-              friendly. If you do encounter any problems or issues, contact us
-              and we'll be sure to get back to you as soon as possible.
-            </Accordion.Body>
-          </Accordion.Item>
+        <Accordion
+          style={{ width: "52rem", border: "none", paddingBottom: "100px" }}
+        >
+          {FAQ.map((faq, index) => {
+            return (
+              <Accordion.Item
+                eventKey={index.toLocaleString()}
+                className="py-2"
+                style={faq.style}
+              >
+                <Accordion.Header as="p">
+                  <strong>{faq.question}</strong>
+                </Accordion.Header>
+                <Accordion.Body className="text-muted">
+                  {faq.answer}
+                </Accordion.Body>
+              </Accordion.Item>
+            );
+          })}
         </Accordion>
       </div>
     </div>
