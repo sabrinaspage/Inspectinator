@@ -12,7 +12,6 @@ export interface InspectorFormSection {
   token?: InspectorFormSectionType;
   headingId: string;
   collapseId: string;
-  status: SectionStatus;
   title: string;
   description: ReactNode;
   url: string;
@@ -28,7 +27,6 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       token: InspectorFormSectionType.BASIC_INFO,
       headingId: "flush-headingOne",
       collapseId: "flush-collapseOne",
-      status: SectionStatus.NOT_STARTED,
       title: "Basic Information",
       description: "Enter basic information about the company.",
       url: UrlsForForm.basicInfoSection,
@@ -38,7 +36,6 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       token: InspectorFormSectionType.HIGH_RISK,
       headingId: "flush-headingTwo",
       collapseId: "flush-collapseTwo",
-      status: SectionStatus.NOT_STARTED,
       title: "High Risk Factors",
       description:
         "High Risk Factors are improper practices or procedures identified as the most prevalent contributing factors of foodborne illness or injury.",
@@ -49,7 +46,6 @@ function inspectorFormSectionsFunc(): InspectorFormSection[] {
       token: InspectorFormSectionType.LOW_RISK,
       headingId: "flush-headingThree",
       collapseId: "flush-collapseThree",
-      status: SectionStatus.NOT_STARTED,
       title: "Low Risk Factors",
       description:
         "Low Risk Factors are preventive measures to control the addition of pathogens, chemicals, and physical objects into foods.",

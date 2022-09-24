@@ -14,18 +14,10 @@ import { AuthContext } from "../../../contexts/AuthContext";
 const Section = ({
   collapseId,
   headingId,
-  status,
   title,
   description,
   url,
 }: InspectorFormSection) => {
-  const sectionStatus =
-    status === SectionStatus.NOT_STARTED ? (
-      <Pill title="Not Started" color="#FEF3F2" textColor="#F04438" />
-    ) : (
-      <Pill title="Saved" color="#ECFDF3" textColor="#12B76A" />
-    );
-
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id={headingId}>
@@ -38,7 +30,7 @@ const Section = ({
           aria-controls={collapseId}
           style={{ height: "115px" }}
         >
-          {title} {sectionStatus}
+          {title}
         </button>
       </h2>
       <div
@@ -51,23 +43,14 @@ const Section = ({
         <div className="accordion-body">
           {description}
           <p />
-          {status === SectionStatus.NOT_STARTED ? (
-            <Link to={url}>
-              <button
-                style={{ borderRadius: "8px" }}
-                className="btn p-2 w-25 btn-dark bg-dark"
-              >
-                Start
-              </button>
-            </Link>
-          ) : (
+          <Link to={url}>
             <button
               style={{ borderRadius: "8px" }}
-              className="btn p-2 w-100 btn-dark bg-dark"
+              className="btn p-2 w-25 btn-dark bg-dark"
             >
-              Update
+              Start
             </button>
-          )}
+          </Link>
         </div>
       </div>
     </div>
@@ -82,11 +65,10 @@ export default function SectionSelectionPage() {
 
   useEffect(() => {
     console.log(auth.basicInformation);
-    console.log(auth.highRiskAnswers);  
+    console.log(auth.highRiskAnswers);
   }, [inspector]);
 
   async function saveDocument() {
-
     if (auth.basicInformation.length === 0) {
       alert("Please fill out basic information");
       return;
@@ -101,7 +83,7 @@ export default function SectionSelectionPage() {
       alert("Please fill out the low risk section");
       return;
     }
-    
+
     let signData = {};
 
     // Hello Sign API Stuff
@@ -109,101 +91,104 @@ export default function SectionSelectionPage() {
       basic_info: {
         inspector: {
           email: auth.userEmail,
-          name: auth.userName
+          name: auth.userName,
         },
         client: {
           email: auth.basicInformation[0].businessName,
-          name: auth.basicInformation[0].operator
-        }
-      }
-    }
+          name: auth.basicInformation[0].operator,
+        },
+      },
+    };
     await fetch("http://localhost:5000/helloSign/sendEsigns", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(param),
     })
-    .then(async response => {
-      const isJson = response.headers.get('content-type')?.includes('application/json');
-      const data = isJson && await response.json();
+      .then(async (response) => {
+        const isJson = response.headers
+          .get("content-type")
+          ?.includes("application/json");
+        const data = isJson && (await response.json());
 
-      // check for error response
-      if (!response.ok) {
-        // get error message from body or default to response status
-        const error = (data && data.message) || response.status;
-        return Promise.reject(error);
-      } else {
-        console.log(data);
-        signData = data;
-      }
-    })
-    .catch(error => {
-        console.error('There was an error!', error);
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response status
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+        } else {
+          console.log(data);
+          signData = data;
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
         return;
-    });
+      });
 
-
-
-    const documentInfo = { 
-      basicInformation : auth.basicInformation,
-      highRisk : auth.highRiskAnswers,
-      lowRisk : auth.lowRiskAnswers,
-      signatureRequestData : signData,
-      userId : auth.userId
+    const documentInfo = {
+      basicInformation: auth.basicInformation,
+      highRisk: auth.highRiskAnswers,
+      lowRisk: auth.lowRiskAnswers,
+      signatureRequestData: signData,
+      userId: auth.userId,
     };
- 
-    await fetch("http://localhost:5000/document/addDoc", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-       },
-        body: JSON.stringify(documentInfo),
-    })
-    .then(async response => {
-      const isJson = response.headers.get('content-type')?.includes('application/json');
-      const data = isJson && await response.json();
 
-      // check for error response
-      if (!response.ok) {
-        // get error message from body or default to response status
-        const error = (data && data.message) || response.status;
-        return Promise.reject(error);
-      } else {
-        console.log(response);
-        
-      }
+    await fetch("http://localhost:5000/document/addDoc", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(documentInfo),
     })
-    .catch(error => {
-        console.error('There was an error!', error);
+      .then(async (response) => {
+        const isJson = response.headers
+          .get("content-type")
+          ?.includes("application/json");
+        const data = isJson && (await response.json());
+
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response status
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+        } else {
+          console.log(response);
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
         return;
-    });
+      });
     alert("Document saved successfully!");
 
     await fetch("http://localhost:5000/auth/getDocuments/" + auth.userEmail, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .then(async response => {
-      const isJson = response.headers.get('content-type')?.includes('application/json');
-      const data = isJson && await response.json();
+      .then(async (response) => {
+        const isJson = response.headers
+          .get("content-type")
+          ?.includes("application/json");
+        const data = isJson && (await response.json());
 
-      // check for error response
-      if (!response.ok) {
-        // get error message from body or default to response status
-        const error = (data && data.message) || response.status;
-        return Promise.reject(error);
-      } else {
-        console.log(response);
-        auth.setDocuments(data);
-      }
-    })
-    .catch(error => {
-        console.error('There was an error!', error);
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response status
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+        } else {
+          console.log(response);
+          auth.setDocuments(data);
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
         return;
-    });
+      });
 
     navigate("/dashboard");
   }
