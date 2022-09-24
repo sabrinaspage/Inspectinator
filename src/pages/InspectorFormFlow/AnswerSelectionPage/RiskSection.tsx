@@ -53,7 +53,6 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
     }
   }, []);
 
-
   function handleRepeatChange(index: number) {
     console.log(index);
     const temp = prevAnswers;
@@ -63,7 +62,8 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
 
   function handleCorrectedChange(index: number) {
     const temp = prevAnswers;
-    temp[index].correctedDuringInspection = !temp[index].correctedDuringInspection;
+    temp[index].correctedDuringInspection =
+      !temp[index].correctedDuringInspection;
     setPrevAnswers(temp);
   }
 
@@ -104,50 +104,42 @@ export const RiskSection = ({ type }: RiskSectionProps) => {
                       <div className="col-1">{questionNum * 100}</div>
                       <div className="col-5">{row.title}</div>
                       <div className="col-2">
-                        {
-                          prevAnswers[g].repeatViolation && 
+                        {prevAnswers[g].repeatViolation && (
                           <input
                             className="form-check-input"
                             type="checkbox"
                             value=""
-                            id="flexCheckChecked"
                             onClick={() => handleRepeatChange(g)}
                             defaultChecked
                           />
-                        }
-                        {
-                          !prevAnswers[g].repeatViolation && 
+                        )}
+                        {!prevAnswers[g].repeatViolation && (
                           <input
                             className="form-check-input"
                             type="checkbox"
                             value=""
-                            id="flexCheckChecked"
                             onClick={() => handleRepeatChange(g)}
                           />
-                        }
+                        )}
                       </div>
                       <div className="col-3">
-                        {
-                          prevAnswers[g].correctedDuringInspection &&
+                        {prevAnswers[g].correctedDuringInspection && (
                           <input
                             className="form-check-input"
                             type="checkbox"
                             value=""
-                            id="flexCheckChecked"
                             defaultChecked
                             onClick={() => handleCorrectedChange(g)}
                           />
-                        }
-                        {
-                          !prevAnswers[g].correctedDuringInspection &&
+                        )}
+                        {!prevAnswers[g].correctedDuringInspection && (
                           <input
                             className="form-check-input"
                             type="checkbox"
                             value=""
-                            id="flexCheckChecked"
                             onClick={() => handleCorrectedChange(g)}
                           />
-                        }
+                        )}
                       </div>
                       <div className="col-1">{row.pts}</div>
                     </div>
