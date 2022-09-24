@@ -7,7 +7,7 @@ export const FAQ: { style: any; question: string; answer: string }[] = [
     },
     question: "What's the difference between paperwork and online forms?",
     answer:
-      "For paper forms, you legibly print all form data and get a client signature on-site. For online forms, you can continually update your form fields upon login. When you need a client signature, tell them to register so you can grant access to your forms signature field.",
+      "For paper forms, you legibly print all form data and get a client signature on-site. For online forms, you can continually update your form fields upon login. When you need a client signature, click 'Sign and Review' to start the HelloSign process via email.",
   },
   {
     style: {
@@ -17,7 +17,7 @@ export const FAQ: { style: any; question: string; answer: string }[] = [
     },
     question: "How do e-signatures work?",
     answer:
-      "An e-signature is a protected and legally binding online signature, just like a handwritten signature. Although there are many online services that offer e-signatures, we use HelloSign. As noted on their website, each signature must come from a separate account. If different names were to be signed from a single HelloSign account, it would threaten the integrity of the signatures, and could potentially invalidate a document signed in this manner. To do an e-signature, one only needs to login to their account and type their full name.",
+      "An e-signature is a protected and legally binding online signature, just like a handwritten signature. Although there are many online services that offer e-signatures, we use HelloSign. As noted on their website, each signature must come from a separate account. If different names were to be signed from a single HelloSign account, it would threaten the integrity of the signatures, and could potentially invalidate a document signed in this manner. To do an e-signature, one only needs to click on a HelloSign link then draw or fill out the signature field.",
   },
   {
     style: {
@@ -39,7 +39,7 @@ export const FAQ: { style: any; question: string; answer: string }[] = [
     question:
       "I'm both an inspector and a restaurant owner. Can I do a self inspection through the online form?",
     answer:
-      "Yes, just sign-off on both the inspector and client signature fields.",
+      "Yes, just use 2 different email accounts to fill out both signature requests.",
   },
   {
     style: {

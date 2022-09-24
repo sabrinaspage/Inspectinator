@@ -1,10 +1,14 @@
-
+import { Card } from "react-bootstrap";// 306 423
 export default function AboutPage() {
 
   return (
     <div className="container pb-5 mb-5">
       <div>
         <h1 className="display-4 text-primary mx-auto d-flex justify-content-center col-md-7">About</h1>
+        <br></br>
+        <div className="col-md-3 rounded mx-auto d-block">
+          <Card.Img variant="top" src="/images/about/grade.jpg" width="350" height="275"/>
+        </div>
         <br></br>
         <p className="mx-auto d-flex h5 col-md-9 text-center text-secondary" style={{lineHeight: "2em"}}>
           Our mission is to give inspectors the freedom to choose how they work. Without our product, 
