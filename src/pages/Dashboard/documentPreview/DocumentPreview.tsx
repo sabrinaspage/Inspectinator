@@ -34,7 +34,6 @@ export default function DocumentPreview() {
     if (changed === false) {
       fetchData();
     }
-    setData([]);
   }, [changed]);
 
   const fetchData = async () => {
