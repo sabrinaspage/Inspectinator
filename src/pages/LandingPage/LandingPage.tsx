@@ -63,7 +63,8 @@ export default function LandingPage() {
             <h3 className="fw-bold mb-4 text-center">Form Flow</h3>
             <p className="lead text-center">
               Easily navigate form sections, stay updated on progress, and
-              receive feedback. Attach notes to responses.
+              receive feedback. Create a new form or continue from where you 
+              last left off.
             </p>
           </div>
         </div>
@@ -80,8 +81,8 @@ export default function LandingPage() {
           <div>
             <h3 className="fw-bold mb-4 text-center">Record Keeping</h3>
             <p className="lead text-center">
-              Archived forms maintain a history of all your previous inspections
-              through read-only documents. Past form responses and signature
+              Previewed forms maintain a history of all your previous inspections
+              through read-only fields. Past form responses and signature
               meta-data conveniently stored in one place.
             </p>
           </div>
@@ -91,10 +92,9 @@ export default function LandingPage() {
       <div className="container-fluid m-0 p-0 row w-100 px-5">
         <div className="col-lg-6 px-4 d-flex align-items-center">
           <div>
-            <h3 className="fw-bold mb-4 text-center">Customizability</h3>
+            <h3 className="fw-bold mb-4 text-center">Efficiency</h3>
             <p className="lead text-center">
-              Create new form fields or even entirely new sections. Design as
-              you see fit.
+            No need to fill the entire form! Just the necessary fields.
             </p>
           </div>
         </div>
