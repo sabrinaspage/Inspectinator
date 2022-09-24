@@ -2,7 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
-import * as sjcl from 'sjcl';
+import * as sjcl from "sjcl";
 
 import "./SignInPage.css";
 
@@ -110,7 +110,7 @@ export default function SignInPage() {
             </p>
           </div>
         </div>
-        <div className="d-md-none d-lg-block bg-primary d-flex col-lg-6 secondContainer"></div>
+        <div className="d-md-none d-lg-block d-flex col-lg-6 secondContainer"></div>
       </div>
     </div>
   );

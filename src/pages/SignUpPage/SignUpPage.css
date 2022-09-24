@@ -1,6 +1,5 @@
 .secondContainer {
-    border-radius: 60px 0 0 60px;
-    background-image: url("../../../public/images/signInUp/restaurant.jpg");
+    background-image: url("../../../public/food.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

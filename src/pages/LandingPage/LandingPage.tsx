@@ -16,14 +16,13 @@ export default function LandingPage() {
           <div
             className="h-75"
             style={{
-              width: "800px",
+              width: "700px",
               backgroundImage: "linear-gradient(#149BFC, #BBE2FF)",
-              borderRadius: "0 100% 100% 0",
             }}
           >
             <div
               className="text-white"
-              style={{ width: "100%", padding: "180px 250px 135px 100px" }}
+              style={{ width: "100%", padding: "180px 190px 135px 100px" }}
             >
               <h1 className="mb-3">Modernize your inspection workflow.</h1>
               <h4 className="mb-4">
@@ -63,7 +62,7 @@ export default function LandingPage() {
             <h3 className="fw-bold mb-4 text-center">Form Flow</h3>
             <p className="lead text-center">
               Easily navigate form sections, stay updated on progress, and
-              receive feedback. Create a new form or continue from where you 
+              receive feedback. Create a new form or continue from where you
               last left off.
             </p>
           </div>
@@ -81,9 +80,9 @@ export default function LandingPage() {
           <div>
             <h3 className="fw-bold mb-4 text-center">Record Keeping</h3>
             <p className="lead text-center">
-              Previewed forms maintain a history of all your previous inspections
-              through read-only fields. Past form responses and signature
-              meta-data conveniently stored in one place.
+              Previewed forms maintain a history of all your previous
+              inspections through read-only fields. Past form responses and
+              signature meta-data conveniently stored in one place.
             </p>
           </div>
         </div>
@@ -94,7 +93,7 @@ export default function LandingPage() {
           <div>
             <h3 className="fw-bold mb-4 text-center">Efficiency</h3>
             <p className="lead text-center">
-            No need to fill the entire form! Just the necessary fields.
+              No need to fill the entire form! Just the necessary fields.
             </p>
           </div>
         </div>
